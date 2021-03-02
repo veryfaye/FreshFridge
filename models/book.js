@@ -3,13 +3,11 @@
 const mongoose = require("mongoose");
 const Schema = mongoose.Schema;
 
-const bookSchema = new Schema({
-  title: { type: String, required: true },
-  author: { type: String, required: true },
-  synopsis: String,
-  date: { type: Date, default: Date.now }
-});
+const expirationDateSchema = new Schema({
+  product: { type: String, required: true },
+  shelfLife: { type: Number, required: true },
+   });
 
-const Book = mongoose.model("Book", bookSchema);
+const FreshFridge = mongoose.model("FreshFridge", expirationDateSchema);
 
-module.exports = Book;
+module.exports = FreshFridge;
