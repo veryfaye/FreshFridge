@@ -8,9 +8,9 @@ function SignUp() {
     password: "",
   });
 
-  useEffect(()=>{
-      // not sure if anything is needed here
-  },[])
+  useEffect(() => {
+    // not sure if anything is needed here
+  }, []);
 
   function handleInputChange(e) {
     const { name, value } = e.target;
@@ -25,29 +25,35 @@ function SignUp() {
       newUser.email &&
       newUser.password
     ) {
-      console.log(newUser.firstName +", "+
-        newUser.lastName +", "+
-        newUser.email +", "+
-        newUser.password)
+      console.log(
+        newUser.firstName +
+          ", " +
+          newUser.lastName +
+          ", " +
+          newUser.email +
+          ", " +
+          newUser.password
+      );
       API.saveUser({
         firstName: newUser.firstName,
         lastName: newUser.lastName,
         email: newUser.email,
         password: newUser.password,
-      }).then(() => {
-        setNewUser({
-          firstName: "",
-          lastName: "",
-          email: "",
-          password: "",
-        })
-          .then(() => {
-            //redirect user
-          })
-          .catch((err) => {
-            console.log(err);
+      })
+        .then(() => {
+          setNewUser({
+            firstName: "",
+            lastName: "",
+            email: "",
+            password: "",
           });
-      });
+        })
+        .then(() => {
+          //redirect user
+        })
+        .catch((err) => {
+          console.log(err);
+        });
     }
   }
 
