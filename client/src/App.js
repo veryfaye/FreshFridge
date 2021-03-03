@@ -5,6 +5,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 
 import Login from "./components/Login";
 import Signup from "./components/Signup";
+import Home from './components/Home';
 
 function App() {
   return (<Router>
@@ -25,15 +26,13 @@ function App() {
         </div>
       </nav>
 
-      <div className="auth-wrapper">
-        <div className="auth-inner">
-          <Switch>
-            <Route exact path='/' component={Login} />
-            <Route path="/sign-in" component={Login} />
-            <Route path="/sign-up" component={Signup} />
-          </Switch>
-        </div>
-      </div>
+      <Switch>
+        <Route exact path='/' component={Login} />
+        <Route path="/sign-in" component={Login} />
+        <Route path="/sign-up" component={Signup} />
+        <Route path="/home" component={Home} />
+      </Switch>
+
     </div></Router>
   );
 }
