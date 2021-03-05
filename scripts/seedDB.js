@@ -539,8 +539,6 @@ const product = [
     shelfLife: 7,
   },
 
-
-
 ];
 
 db.FreshFridge.remove({})
