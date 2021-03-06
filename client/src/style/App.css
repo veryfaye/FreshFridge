@@ -1,0 +1,4 @@
+/* remove scroll bars */
+.auth-wrapper { 
+    overflow: hidden;
+}
