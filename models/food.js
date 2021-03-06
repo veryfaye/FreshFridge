@@ -8,6 +8,6 @@ const expirationDateSchema = new Schema({
   shelfLife: { type: Number, required: true },
    });
 
-const FreshFridge = mongoose.model("FreshFridge", expirationDateSchema);
+const Food = mongoose.model("Food", expirationDateSchema);
 
-module.exports = FreshFridge;
+module.exports = Food;
