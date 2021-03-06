@@ -34,8 +34,11 @@ function App() {
         </nav>
 
 {/* // <<<<<<< loginFlow */}
-        {/* <div className="auth-wrapper">
-          <div className="auth-inner"> */}
+
+
+        <div className="auth-wrapper">
+          <div className="auth-inner">
+
             <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/sign-in" component={Login} />
