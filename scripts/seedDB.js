@@ -10,14 +10,14 @@ const db = require("../models");
 //   "mongodb://localhost/reactreadinglist"
 // );
 
-mongoose.connect("mongodb://localhost/FreshFridge", {
+mongoose.connect("mongodb://localhost/reactfreshfridge", {
   useNewUrlParser: true,
   useFindAndModify: false,
 });
 
-// source of expiration dates: https://foodshare.com/wp-content/uploads/2018/06/Food-Shelf-Life-Guide.pdf . Conservative expiration dates entered below. Date is calculated as if the item is opened on the day it is checked off the shopping list. Shelf lif is in days.
+// source of expiration dates: https://foodshare.com/wp-content/uploads/2018/06/Food-Shelf-Life-Guide.pdf . Conservative expiration dates entered below. Date is calculated as if the item is opened on the day it is checked off the shopping list. Shelf life is in days.
 
-const product = [
+const productSeed = [
   {
     product: "Juice",
     shelfLife: 7,
@@ -542,7 +542,7 @@ const product = [
 ];
 
 db.Food.remove({})
-  .then(() => db.Food.collection.insertMany(product))
+  .then(() => db.Food.collection.insertMany(productSeed))
   .then((data) => {
     console.log(data.result.n + " product dates have been inserted!");
     process.exit(0);
