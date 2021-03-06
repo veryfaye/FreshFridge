@@ -30,6 +30,7 @@ function App() {
             </div>
           </div>
         </nav>
+
         <Switch>
           <Route exact path="/" component={Login} />
           <Route path="/sign-in" component={Login} />
