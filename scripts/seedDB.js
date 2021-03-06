@@ -541,8 +541,8 @@ const product = [
 
 ];
 
-db.FreshFridge.remove({})
-  .then(() => db.FreshFridge.collection.insertMany(product))
+db.Food.remove({})
+  .then(() => db.Food.collection.insertMany(product))
   .then((data) => {
     console.log(data.result.n + " product dates have been inserted!");
     process.exit(0);

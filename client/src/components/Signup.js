@@ -42,15 +42,13 @@ function SignUp() {
         password: newUser.password,
       })
         .then(() => {
-          setNewUser({
-            firstName: "",
-            lastName: "",
-            email: "",
-            password: "",
-          });
-        })
-        .then(() => {
-          //redirect user
+          // setNewUser({
+          //   firstName: "",
+          //   lastName: "",
+          //   email: "",
+          //   password: "",
+          // });
+          window.location.replace("/home")
         })
         .catch((err) => {
           console.log(err);
