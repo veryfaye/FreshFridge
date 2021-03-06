@@ -33,17 +33,20 @@ function App() {
           </div>
         </nav>
 
-        {/* // <<<<<<< loginFlow */}
+{/* // <<<<<<< loginFlow */}
+
+
         <div className="auth-wrapper">
           <div className="auth-inner">
+
             <Switch>
               <Route exact path="/" component={Login} />
               <Route path="/sign-in" component={Login} />
               <Route path="/sign-up" component={Signup} />
               <Route path="/home" component={Home} />
             </Switch>
-          </div>
-        </div>
+          {/* </div>
+        </div> */}
       </div>
       {/* </div>
       </div> */}
