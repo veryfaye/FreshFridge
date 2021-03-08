@@ -18,7 +18,6 @@ const signToken = (userID) => {
 // Matches with "/api/user"
 router.route("/").post(userController.create);
 
-// router.route("/login").post(userController.login);
 router.post(
   "/login",
   passport.authenticate("local", { session: false }),
@@ -33,6 +32,12 @@ router.post(
     }
   }
 );
+
+router.get('/logout',passport.authenticate('jwt',{session : false}),(req,res)=>{
+    res.clearCookie('access_token');
+    res.json({user:{email : "", role : ""},success : true});
+});
+
 // Matches with "/api/user/:email"
 router.route("/:email").get(userController.find);
 
