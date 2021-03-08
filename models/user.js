@@ -6,9 +6,10 @@ const SALT_WORK_FACTOR = 10;
 const userSchema = new Schema({
   firstName: { type: String, required: true },
   lastName: { type: String, required: true },
-  email: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
   password: { type: String, required: true },
   date: { type: Date, default: Date.now },
+  fridge: [{ type: Schema.Types.ObjectId, ref: "Fridge" }],
 });
 
 userSchema.pre("save", function (next) {
@@ -26,6 +27,16 @@ userSchema.pre("save", function (next) {
     });
   });
 });
+
+userSchema.methods.comparPassword = function (password, cb) {
+  bcrypt.compare(password, this.password, (err, isMatch) => {
+    if (err) return cb(err);
+    else {
+      if (!isMatch) return cb(null, isMatch);
+      return cb(null, this);
+    }
+  });
+};
 
 const User = mongoose.model("User", userSchema);
 
