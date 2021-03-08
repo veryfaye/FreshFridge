@@ -28,31 +28,31 @@ export default function List() {
           <form
             onSubmit={(e) => handleSubmit(e, notes, setNotes, input, setInput)}
           >
-            <div className="input-group mb-3">
-              <input
-                type="text"
-                className="form-control"
-                placeholder="Grocery Item"
-                onChange={(e) => setInput(e.target.value)}
-                value={input}
-              />
-              <button
-                id="addButton"
-                className="btn btn-success"
-              >
-                ADD
-              </button>
+            <div className="list container">
+              <div className="input-group mb-3">
+                <input
+                  type="text"
+                  className="input form-control"
+                  placeholder="Grocery Item"
+                  onChange={(e) => setInput(e.target.value)}
+                  value={input}
+                />
+                <button id="addButton" className="btn btn-success">
+                  ADD
+                </button>
+              </div>
             </div>
-
-            {notes.map((note) => (
-              <Item
-                id={note.id}
-                message={note.message}
-                deleteNote={(id) => deleteNote(id, notes, setNotes)}
-                moveNotes={(id) => moveNotes(id, notes, setNotes)}
-              />
-            ))}
           </form>
+
+          {notes.map((note) => (
+            <Item
+              id={note.id}
+              message={note.message}
+              deleteNote={(id) => deleteNote(id, notes, setNotes)}
+              moveNotes={(id) => moveNotes(id, notes, setNotes)}
+            />
+          ))}
+
           <hr />
         </div>
       </div>
