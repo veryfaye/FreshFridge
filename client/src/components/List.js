@@ -16,6 +16,10 @@ export default function List() {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
+  const moveNotes = (id, notes, setNotes) => {
+    setNotes(notes.filter((note) => note.id !== id)(alert("hello world")));
+  };
+
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">
@@ -34,6 +38,7 @@ export default function List() {
                 id={note.id}
                 message={note.message}
                 deleteNote={(id) => deleteNote(id, notes, setNotes)}
+                moveNotes={(id) => moveNotes(id, notes, setNotes)}
               />
             ))}
           </form>

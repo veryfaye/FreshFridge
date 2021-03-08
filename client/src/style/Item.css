@@ -8,10 +8,13 @@
   width: 25px;
   color: red;
   opacity: 50%;
+  text-align: center;
+  padding-top: 20px;
 }
 .fridgeButton {
   width: 50px;
   color: green;
+  padding-top: 8px;
 }
 .groceryItem {
   display: inline-block;
@@ -29,4 +32,13 @@
 input {
   width: 80%;
   height: 38px;
+  
+}
+
+.foodName {
+  text-align: center;
+  padding-top: 15px;
+  font-weight: 700;
+  font-family: Helvetica, sans-serif;
+  font-size: x-large;
 }
