@@ -1,12 +1,14 @@
 const express = require("express");
 const mongoose = require("mongoose");
-const path = require("path");
+const cookieParser = require("cookie-parser");
+// const path = require("path");
 const PORT = process.env.PORT || 3001;
 const app = express();
-const routes = require("./routes")
+const routes = require("./routes");
 
 // Define middleware here
 app.use(express.urlencoded({ extended: true }));
+app.use(cookieParser());
 app.use(express.json());
 
 // Serve up static assets (usually on heroku)
@@ -19,7 +21,7 @@ app.use(routes);
 
 // Connect to the Mongo DB
 mongoose.connect(
-  process.env.MONGODB_URI || "mongodb://localhost/reactfreshfridge",
+  process.env.MONGODB_URI || "mongodb://localhost:27017/reactfreshfridge",
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
@@ -27,12 +29,6 @@ mongoose.connect(
     useFindAndModify: false,
   }
 );
-
-// Send every request to the React app
-// Define any API routes before this runs
-// app.get("*", function(req, res) {
-//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
-// });
 
 app.listen(PORT, function () {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
