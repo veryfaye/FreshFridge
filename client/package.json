@@ -13,7 +13,7 @@
     "is-empty": "^1.2.0",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.11.18",
+    "mongoose": "^5.11.19",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "react": "^16.6.3",
