@@ -3,7 +3,7 @@ const fridgeController = require("../../controllers/fridgeController");
 const Fridge = require("../../models/fridge");
 
 // Matches with "/api/fridge"
-//router.route("/").post(fridgeController.create)
+router.route("/").post(fridgeController.create)
 // .get(fridgeController.findAll);
 
 // Matches with "/api/fridge/:id"
