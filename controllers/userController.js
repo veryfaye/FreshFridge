@@ -34,16 +34,19 @@ module.exports = {
     });
   },
 
-  login:
-    (passport.authenticate("local", { session: false }),
-    function (req, res) {
-      if (req.isAuthenticated()) {
-        const { _id, email } = req.user;
-        const token = signToken(_id);
-        res.cookie("access_token", token, { httpOnly: true, sameSite: true });
-        res.status(200).json({ isAuthenticated: true, user: { email } });
-      }
-    }),
+  login: function (req, res) {
+    if (req.isAuthenticated()) {
+      const { _id, email } = req.user;
+      const token = signToken(_id);
+      res.cookie("access_token", token, { httpOnly: true, sameSite: true });
+      res.status(200).json({ isAuthenticated: true, user: { email } });
+    }
+  },
+
+  logout: function (req, res) {
+    res.clearCookie("access_token");
+    res.json({ user: { email: "", role: "" }, success: true });
+  },
 
   find: function (req, res) {
     db.User.find({ email: req.params.email })
