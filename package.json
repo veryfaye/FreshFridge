@@ -29,15 +29,12 @@
     "if-env": "^1.0.4",
     "jsonwebtoken": "^8.5.1",
     "moment": "^2.29.1",
-    "mongoose": "^5.11.18",
     "nodemailer": "^6.5.0",
     "passport": "^0.4.1",
     "passport-jwt": "^4.0.0",
     "passport-local": "^1.0.0",
-<<<<<<< HEAD
-=======
     "react-moment": "^1.1.1",
->>>>>>> f84de5a3022515835bdfa367a150cf11c61e82fd
+    "mongoose": "^5.11.19",
     "react-router-dom": "^5.2.0",
     "styled-icons": "^10.29.0"
   }
