@@ -235,7 +235,7 @@ const productSeed = [
     shelfLife: 7,
   },
   {
-    product: "Cornedbeef,in pouch with pickling juices",
+    product: "Cornedbeef, in pouch with pickling juices",
     shelfLife: 5,
   },
   {
