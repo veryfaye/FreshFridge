@@ -10,6 +10,7 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   date: { type: Date, default: Date.now },
   fridges: [{ type: Schema.Types.ObjectId, ref: "Fridge" }],
+  foods: [{type: Schema.Types.ObjectId, ref:"Food"}],
 });
 
 userSchema.pre("save", function (next) {
