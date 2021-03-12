@@ -39,7 +39,6 @@ passport.use(
     },
     (email, password, done) => {
       User.findOne({ email }, (err, user) => {
-        console.log(user);
         // something went wrong with db
         if (err) {
           return done(err);
