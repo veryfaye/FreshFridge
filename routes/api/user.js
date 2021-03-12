@@ -1,8 +1,8 @@
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const passport = require("passport");
-const passportConfig = require("../../passport");
-const JWT = require("jsonwebtoken");
+// const passportConfig = require("../../passport");
+// const JWT = require("jsonwebtoken");
 
 // Matches with "/api/user"
 router.route("/").post(userController.create);
