@@ -31,6 +31,7 @@ export default function List() {
             <div className="list container">
               <div className="input-group mb-3">
                 <input
+                  id="test"
                   type="text"
                   className="input form-control"
                   placeholder="Grocery Item"
