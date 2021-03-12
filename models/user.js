@@ -15,8 +15,6 @@ const userSchema = new Schema({
 
 userSchema.pre("save", function (next) {
   var user = this;
-  console.log("userSchema.pre(save:");
-  console.log(this);
   if (!user.isModified("password")) return next();
   bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
     if (err) return next(err);
@@ -29,8 +27,6 @@ userSchema.pre("save", function (next) {
 });
 
 userSchema.methods.comparePassword = function (password, cb) {
-  console.log("Compare Password: " + password);
-  console.log(this);
   bcrypt.compare(password, this.password, (err, isMatch) => {
     if (err) return cb(err);
     else {
