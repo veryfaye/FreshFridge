@@ -5,23 +5,18 @@ import { ArrowheadRightOutline } from "@styled-icons/evaicons-outline/ArrowheadR
 
 export default function Item({ id, message, deleteNote, moveNote }) {
   return (
-    <div className="item row">
-      <div className="col-sm-1">
-        <div className="deleteButton">
-          <Cross onClick={() => deleteNote(id)}></Cross>
-        </div>
+    <div className="item">
+      <div className="deleteButton">
+        <Cross onClick={() => deleteNote(id)}></Cross>
       </div>
-      <div className="col-sm-8">
-        <div className="foodName">
-          <p>{message}</p>
-        </div>
-      </div>
-      <div className="col-sm-2">
-        <div className="fridgeButton">
+      <div className="foodName">
+        <p>
+          {message}
           <ArrowheadRightOutline
+            className="fridgeButton"
             onClick={() => moveNote(id)}
           ></ArrowheadRightOutline>
-        </div>
+        </p>
       </div>
     </div>
   );

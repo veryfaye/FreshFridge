@@ -1,39 +1,34 @@
-.item.row {
+.item {
   border: solid 1px;
+  border-color: lightgray;
+  border-radius: 10px;
   width: 100%;
-  height: 70px;
+  margin-bottom: 7px;
+  box-shadow: 4px 5px #969595;
 }
 
 .deleteButton {
+  float: left;
   width: 25px;
   color: red;
   opacity: 50%;
   text-align: center;
-  padding-top: 20px;
+  padding-top: 13px;
 }
 .fridgeButton {
-  width: 50px;
+  width: 35px;
   color: green;
-  padding-top: 8px;
-}
-.groceryItem {
-  display: inline-block;
-  width: 100%;
-  height: 70px;
-}
-.groceryItem {
-  display: inline-block;
-  width: 20%;
-  height: 50%;
-  position: relative;
-  margin: -2px;
+  float: right;
 }
 
 .foodName {
   text-align: center;
-  padding-top: 15px;
+  padding-top: 10px;
   font-weight: 700;
   font-family: Helvetica, sans-serif;
   font-size: x-large;
 }
 
+#testingOne {
+  background-color: purple;
+}
