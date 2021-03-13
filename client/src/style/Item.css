@@ -4,7 +4,7 @@
   border-radius: 10px;
   width: 100%;
   margin-bottom: 7px;
-  box-shadow: 4px 5px #969595;
+  box-shadow: 4px 5px #338e3e58;
 }
 
 .deleteButton {
@@ -31,4 +31,9 @@
 
 #testingOne {
   background-color: purple;
+}
+
+.date {
+  font-size: 100%;
+  font-weight: 300;
 }

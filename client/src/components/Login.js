@@ -6,7 +6,7 @@ export default class Login extends Component {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <form>
-            <h3>Sign In</h3>
+            <h3>Login</h3>
 
             <div className="form-group">
               <label>Email address</label>
