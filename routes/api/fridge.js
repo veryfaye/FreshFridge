@@ -1,7 +1,6 @@
 const router = require("express").Router();
 const fridgeController = require("../../controllers/fridgeController");
 const passport = require("passport");
-const passportConfig = require("../../passport");
 
 router.put(
   "/:id",

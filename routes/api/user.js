@@ -18,7 +18,4 @@ router.get(
   userController.logout
 );
 
-// Matches with "/api/user/:email"
-router.route("/:email").get(userController.find);
-
 module.exports = router;
