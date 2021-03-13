@@ -20,5 +20,11 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   foodController.updateUserAuth
 );
+//api/food/grocery-item/id
+router.get(
+  "/delete/:id",
+  passport.authenticate("jwt", { session: false }),
+  foodController.deleteUserAuth
+);
 
 module.exports = router;
