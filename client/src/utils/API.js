@@ -22,12 +22,26 @@ export default {
     return axios.get("/api/food/" + id);
   },
   // ec
-  getAllGrocery: function(id) {
-    return axios.get("/get-all/grocery" + id); 
+  getAllGrocery: function() {
+    return axios.get("/api/food/get-all/grocery"); 
   },
-  // ec
-  userFood: function(userID) {
-    return axios.post 
+  addGrocery: function(id) {
+    return axios.get("/api/food/grocery-item/" + id); 
+  },
+  // add fridge items
+  addFridge: function(fridgeData) {
+    return axios.post("/api/fridge", fridgeData); 
+  }, 
+  // get all user fridge items
+  userFridge: function() {
+    return axios.get("/api/fridge"); 
+  }, 
+  // update the user fridge
+  updateFridge: function(id) {
+    return axios.get("/api/fridge/" + id); 
+  }, 
+  // remove grocery items
+  removeGrocery: function(id) {
+    return axios.get("/api/food/delete/" + id); 
   }
-
 };
