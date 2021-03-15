@@ -1,5 +1,17 @@
 const db = require("../models");
 const JWT = require("jsonwebtoken");
+const mongoose = require("mongoose");
+//nodemailer items
+require("dotenv").config();
+const nodemailer = require("nodemailer");
+//nodemailer step1
+const transporter = nodemailer.createTransport({
+  service: "gmail",
+  auth: {
+    user: process.env.EMAIL,
+    pass: process.env.PASSWORD,
+  },
+});
 
 const signToken = (userID) => {
   return JWT.sign(
@@ -26,7 +38,14 @@ module.exports = {
         });
       else {
         db.User.create(req.body)
-          .then((dbModel) => res.json(dbModel))
+          .then((dbModel) =>
+            res.json({
+              message: {
+                msgBody: "User created: " + dbModel.email,
+                msgError: true,
+              },
+            })
+          )
           .catch((err) => res.status(422).json(err));
       }
     });
@@ -44,5 +63,101 @@ module.exports = {
   logout: function (req, res) {
     res.clearCookie("access_token");
     res.json({ user: { email: "", role: "" }, success: true });
+  },
+
+  addGroceryItem: function(req,res){
+    const food = mongoose.Types.ObjectId(req.params.id);
+    req.user.foods.push(food);
+    req.user.save((err) => {
+      if (err)
+        res.status(500).json({
+          message: { msgBody: "Error has occurred", msgError: true },
+        });
+      else
+        res.status(200).json({
+          message: {
+            msgBody: "Successfully added food item",
+            msgError: false,
+          },
+        });
+    });
+  },
+  deleteGroceryItem:function(req,res){
+    const food = mongoose.Types.ObjectId(req.params.id);
+    const foodIndex = req.user.foods.indexOf(food);
+    req.user.foods.splice(foodIndex,1);
+    req.user.save((err) => {
+      if (err)
+        res.status(500).json({
+          message: { msgBody: "Error has occurred", msgError: true },
+        });
+      else
+        res.status(200).json({
+          message: {
+            msgBody: "Successfully deleted food item",
+            msgError: false,
+          },
+        });
+    });
+  },
+
+  setResetToken: function (req, res) {
+    //find one user where the email matches the email submitted
+    const token = require("crypto").randomBytes(20).toString("hex");
+
+    db.User.findOneAndUpdate(
+      { email: req.body.email },
+      { restPasswordToken: token },
+      function (err, response) {
+        console.log(err);
+        console.log(response);
+        if (err) {
+          res.status(422).json(err);
+        } else if (!response) {
+          res.status(500).json({
+            message: {
+              msgBody: "Email does not exist",
+              msgError: true,
+            },
+          });
+        } else {
+          //step2
+          const mailOptions = {
+            from: process.env.EMAIL,
+            to: req.body.email,
+            subject: "Reset Your Fresh Fridge Password",
+            text:
+              "Click here to reset your fresh fridge password\n\n" +
+              `http://localhost:3000/resetpass/${token}`,
+          };
+
+          //step 3
+          transporter.sendMail(mailOptions, (err) => {
+            if (err) {
+              console.log("Error has occurred");
+            } else {
+              console.log("Email Sent");
+            }
+          });
+          res.status(200).json({
+            message: {
+              msgBody: "Successfully sent email",
+              msgError: false,
+            },
+          });
+        }
+      }
+    );
+  },
+  resetPassword: function (req, res) {
+    console.log(req.params);
+    // find one user where the rest token matches the req.params.resetPasswordToken
+    // then update 
+    db.User.findOne(
+      { restPasswordToken: "2183dd06c633d49debda1e2ffa09794dfdc58a6b" },
+      function (err, response) {
+        console.log(response);
+      }
+    );
   },
 };

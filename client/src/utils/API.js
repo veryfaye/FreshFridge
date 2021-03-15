@@ -23,10 +23,10 @@ export default {
   },
   // ec
   getAllGrocery: function() {
-    return axios.get("/api/food/get-all/grocery"); 
+    return axios.put("/api/user/get-all/grocery"); 
   },
   addGrocery: function(id) {
-    return axios.get("/api/food/grocery-item/" + id); 
+    return axios.put("/api/user/grocery-item/" + id); 
   },
   // add fridge items
   addFridge: function(fridgeData) {
