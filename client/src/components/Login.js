@@ -1,39 +1,44 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import API from "../utils/API";
 
-export default function Login() {
+export default function Login(props) {
   const [user, setUser] = useState({
     email: "",
     password: "",
   });
 
-  function handleInputChange(e) {
-    const { name, value } = e.target;
-    setUser({ ...user, [name]: value });
-  }
 
+  // get email, password from user's input
+  function handleSubmit() {
+    const userEmail = document.querySelector("#email").value.trim();
+    const userPassword = document.querySelector("#password").value.trim();
+    setUser({
+      email: userEmail,
+      password: userPassword,
+    });
+  
+
+  // useEffect(() => {
   API.getUser({
-    // email: User.email,
-    // password: User.password,
+    email: user.email,
+    password: user.password,
   })
     .then((response) => {
-      if (
-        response.email === user.email &&
-        response.password === user.password
-      ) {
-        console.log(response.email)
-        console.log(user.email)
+      console.log(response);
+      console.log(user.email);
+      if (response.isAuthenticated) {
         // window.location.replace("/home");
-        alert("poo")
+        alert("it worked");
+      } else {
+        alert("Try again!");
+        //   window.location.reload;
       }
-      //  else {
-      //   alert("Try again!");
-      //   window.location.reload;
-      // }
     })
     .catch((err) => {
       console.log(err);
-    });
+    })
+  // ,[user]})
+  }
 
   return (
     <div className="auth-wrapper">
@@ -44,10 +49,10 @@ export default function Login() {
           <div className="form-group">
             <label>Email address</label>
             <input
-            name="email"
-              onChange={handleInputChange}
+              id="email"
+              onSubmit={handleSubmit}
               type="email"
-              value={user.email}
+              // value={user.email}
               className="form-control"
               placeholder="Enter email"
             />
@@ -56,9 +61,9 @@ export default function Login() {
           <div className="form-group">
             <label>Password</label>
             <input
-            name="password"
-              onChange={handleInputChange}
-              value={user.password}
+              id="password"
+              onSubmit={handleSubmit}
+              // value={user.password}
               type="password"
               className="form-control"
               placeholder="Enter password"
