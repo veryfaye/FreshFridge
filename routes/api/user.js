@@ -19,5 +19,19 @@ router.get(
 );
 
 router.post("/sendResetEmail", userController.setResetToken);
+//router.post("/resetPassword/:token", userController.resetPassword);
+
+//api/user/grocery-item/id
+router.put(
+  "/grocery-item/:id",
+  passport.authenticate("jwt", { session: false }),
+  userController.addGroceryItem
+);
+//api/user/delete/id
+router.put(
+  "/delete/:id",
+  passport.authenticate("jwt", { session: false }),
+  userController.deleteGroceryItem
+);
 
 module.exports = router;
