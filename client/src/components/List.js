@@ -16,8 +16,8 @@ export default function List() {
     setNotes(notes.filter((note) => note.id !== id));
   };
 
-  const moveNotes = (id, notes, setNotes) => {
-    setNotes(notes.filter((note) => note.id !== id)(alert("hello world")));
+  const moveNote = (id) => {
+    alert("hello world");
   };
 
   return (
@@ -50,7 +50,7 @@ export default function List() {
               id={note.id}
               message={note.message}
               deleteNote={(id) => deleteNote(id, notes, setNotes)}
-              moveNotes={(id) => moveNotes(id, notes, setNotes)}
+              moveNote={(id) => moveNote(id)}
             />
           ))}
 
