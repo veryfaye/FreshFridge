@@ -1,12 +1,15 @@
 import React from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style/App.css";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
 import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Home from "./components/Home";
 import Moment from "./components/Date";
 function App() {
+
+  const [auth, setAuth] = useState(false);
+
   return (
     <Router>
       <div className="App">
@@ -35,8 +38,12 @@ function App() {
         </nav>
 
         <Switch>
-          <Route exact path="/" component={Login} />
-          <Route path="/sign-in" component={Login} />
+          <Route exact path="/">
+            {auth ? <Redirect to="/home"/> : <Login setAuth={setAuth}/>}
+          </Route>
+          <Route path="/sign-in">
+            {auth ? <Redirect to="/home"/> : <Login setAuth={setAuth}/>}
+          </Route>
           <Route path="/sign-up" component={Signup} />
           <Route path="/home" component={Home} />
         </Switch>
