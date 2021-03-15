@@ -14,3 +14,4 @@ router.use("/food",foodRoutes)
 // fridge routes
 router.use("/fridge",fridgeRoutes)
 module.exports = router;
+

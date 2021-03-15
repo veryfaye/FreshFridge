@@ -14,7 +14,7 @@ export default function Item({ id, message, deleteNote, moveNote }) {
           {message}
           <ArrowheadRightOutline
             className="fridgeButton"
-            onClick={() => moveNote(id)}
+            onClick={() => (deleteNote(id), moveNote(id))}
           ></ArrowheadRightOutline>
         </p>
       </div>
