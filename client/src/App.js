@@ -18,8 +18,9 @@ function App() {
             <Link className="navbar-brand" to={"/sign-in"}>
               FreshFridge
             </Link>
-            <Moment />
-
+            <div className="date">
+              <Moment />
+            </div>
             <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
               <ul className="navbar-nav ml-auto">
                 <li className="nav-item">

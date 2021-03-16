@@ -1,7 +1,7 @@
 const router = require("express").Router();
 const userController = require("../../controllers/userController");
 const passport = require("passport");
-
+const passportConfig = require("../../passport");
 
 // Matches with "/api/user"
 router.route("/").post(userController.create);
@@ -16,6 +16,22 @@ router.get(
   "/logout",
   passport.authenticate("jwt", { session: false }),
   userController.logout
+);
+
+router.post("/sendResetEmail", userController.setResetToken);
+//router.post("/resetPassword/:token", userController.resetPassword);
+
+//api/user/grocery-item/id
+router.put(
+  "/grocery-item/:id",
+  passport.authenticate("jwt", { session: false }),
+  userController.addGroceryItem
+);
+//api/user/delete/id
+router.put(
+  "/delete/:id",
+  passport.authenticate("jwt", { session: false }),
+  userController.deleteGroceryItem
 );
 
 module.exports = router;

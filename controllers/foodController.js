@@ -31,39 +31,39 @@ module.exports = {
         }
       });
   },
-  updateUserAuth: function (req, res) {
-    const food = mongoose.Types.ObjectId(req.params.id);
-    req.user.foods.push(food);
-    req.user.save((err) => {
-      if (err)
-        res.status(500).json({
-          message: { msgBody: "Error has occurred", msgError: true },
-        });
-      else
-        res.status(200).json({
-          message: {
-            msgBody: "Successfully added food item",
-            msgError: false,
-          },
-        });
-    });
-  },
-  deleteUserAuth: function (req, res) {
-    const food = mongoose.Types.ObjectId(req.params.id);
-    const foodIndex = req.user.foods.indexOf(food);
-    req.user.foods.splice(foodIndex,1);
-    req.user.save((err) => {
-      if (err)
-        res.status(500).json({
-          message: { msgBody: "Error has occurred", msgError: true },
-        });
-      else
-        res.status(200).json({
-          message: {
-            msgBody: "Successfully deleted food item",
-            msgError: false,
-          },
-        });
-    });
-  }
+  // updateUserAuth: function (req, res) {
+  //   const food = mongoose.Types.ObjectId(req.params.id);
+  //   req.user.foods.push(food);
+  //   req.user.save((err) => {
+  //     if (err)
+  //       res.status(500).json({
+  //         message: { msgBody: "Error has occurred", msgError: true },
+  //       });
+  //     else
+  //       res.status(200).json({
+  //         message: {
+  //           msgBody: "Successfully added food item",
+  //           msgError: false,
+  //         },
+  //       });
+  //   });
+  // },
+  // deleteUserAuth: function (req, res) {
+  //   const food = mongoose.Types.ObjectId(req.params.id);
+  //   const foodIndex = req.user.foods.indexOf(food);
+  //   req.user.foods.splice(foodIndex,1);
+  //   req.user.save((err) => {
+  //     if (err)
+  //       res.status(500).json({
+  //         message: { msgBody: "Error has occurred", msgError: true },
+  //       });
+  //     else
+  //       res.status(200).json({
+  //         message: {
+  //           msgBody: "Successfully deleted food item",
+  //           msgError: false,
+  //         },
+  //       });
+  //   });
+  // }
 };

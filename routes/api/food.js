@@ -15,16 +15,16 @@ router.get(
 );
 
 //api/food/grocery-item/id
-router.get(
-  "/grocery-item/:id",
-  passport.authenticate("jwt", { session: false }),
-  foodController.updateUserAuth
-);
+// router.get(
+//   "/grocery-item/:id",
+//   passport.authenticate("jwt", { session: false }),
+//   foodController.updateUserAuth
+// );
 //api/food/grocery-item/id
-router.get(
-  "/delete/:id",
-  passport.authenticate("jwt", { session: false }),
-  foodController.deleteUserAuth
-);
+// router.get(
+//   "/delete/:id",
+//   passport.authenticate("jwt", { session: false }),
+//   foodController.deleteUserAuth
+// );
 
 module.exports = router;
