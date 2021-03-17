@@ -30,12 +30,23 @@ export default function List() {
       FoodResult = growingFoodList.map((food) => {
         console.log("******food",food);
         return (
-          <div key={food._id}>{food.product}</div>
+          // <div key={food._id}>{food.product}</div>
+          <Item
+          key={food._id}
+          message={food.product} />
         );
       });
     }
 
   console.log("******FoodResult",FoodResult);
+     {/* {notes.map((note) => (
+            <Item
+              id={note.id}
+              message={note.message}
+              deleteNote={(id) => deleteNote(id, notes, setNotes)}
+              moveNote={(id) => moveNote(id)}
+            />
+          ))} */}
 
     return FoodResult;
   };
@@ -98,7 +109,7 @@ export default function List() {
             </div>
           </form>
         
-          <Item message={renderFood()} />
+          <div>{renderFood()}</div>
           
           {/* {notes.map((note) => (
             <Item
