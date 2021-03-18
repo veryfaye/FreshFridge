@@ -8,6 +8,9 @@ export default {
   getUser: function(userData){
     return axios.post("/api/user/login", userData);
   },
+  sendResetEmail: function(email){
+    return axios.put("/api/user/sendResetEmail",email)
+  },
   getUserByToken:function(token){
     return axios.get("/api/user/getByToken/"+token);
   },

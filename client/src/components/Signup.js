@@ -22,15 +22,6 @@ function SignUp() {
       newUser.email &&
       newUser.password
     ) {
-      console.log(
-        newUser.firstName +
-          ", " +
-          newUser.lastName +
-          ", " +
-          newUser.email +
-          ", " +
-          newUser.password
-      );
       API.saveUser({
         firstName: newUser.firstName,
         lastName: newUser.lastName,
@@ -38,12 +29,6 @@ function SignUp() {
         password: newUser.password,
       })
         .then(() => {
-          // setNewUser({
-          //   firstName: "",
-          //   lastName: "",
-          //   email: "",
-          //   password: "",
-          // });
           window.location.replace("/home")
         })
         .catch((err) => {

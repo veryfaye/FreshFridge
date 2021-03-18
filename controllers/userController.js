@@ -174,15 +174,4 @@ module.exports = {
       }
     );
   },
-  // resetPassword: function (req, res) {
-  //   console.log(req.params);
-  //   // find one user where the rest token matches the req.params.resetPasswordToken
-  //   // then update
-  //   db.User.findOne(
-  //     { restPasswordToken: "2183dd06c633d49debda1e2ffa09794dfdc58a6b" },
-  //     function (err, response) {
-  //       console.log(response);
-  //     }
-  //   );
-  // },
 };

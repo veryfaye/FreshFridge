@@ -4,14 +4,11 @@ import API from "../utils/API";
 function ResetPassword() {
   const [user, setUser] = useState({ _id: "" });
   const { token } = useParams();
-  console.log(token);
 
   useEffect(() => {
     API.getUserByToken(token)
       .then((res) => {
-        console.log(res.data);
         setUser({ _id: res.data });
-        console.log(user);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -19,13 +16,11 @@ function ResetPassword() {
   function handleInputChange(e) {
     const { name, value } = e.target;
     setUser({ ...user, [name]: value });
-    console.log(user);
   }
 
   function handleFormSubmit(e) {
     e.preventDefault();
     if (user.password) {
-      console.log(user);
       API.updateUser({
         _id: user._id,
         password: user.password,

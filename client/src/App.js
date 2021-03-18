@@ -7,6 +7,7 @@ import Signup from "./components/Signup";
 import Home from "./components/Home";
 import Moment from "./components/Date";
 import ResetPass from "./components/ResetPassword"
+import VerifyEmail from "./components/VerifyEmail";
 function App() {
 
   const [auth, setAuth] = useState(false);
@@ -48,6 +49,7 @@ function App() {
           </Route>
           <Route path="/sign-up" component={Signup} />
           <Route path="/home" component={Home} />
+          <Route exact path="/resetpass" component={VerifyEmail}/>
           <Route exact path="/resetpass/:token">
             <ResetPass />
           </Route>
