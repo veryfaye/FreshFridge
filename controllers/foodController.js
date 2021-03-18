@@ -21,7 +21,6 @@ module.exports = {
     db.User.findById({ _id: req.user._id })
       .populate("foods")
       .exec((err, document) => {
-        console.log(document);
         if (err)
           res.status(500).json({
             message: { msgBody: "Error has occurred", msgError: true },

@@ -21,7 +21,7 @@ router.route("/getByToken/:token").get(userController.getByToken);
 
 router.route("/updatePassword").put(userController.updatePassword);
 
-router.post("/sendResetEmail", userController.setResetToken);
+router.put("/sendResetEmail", userController.setResetToken);
 // router.post("/resetPassword/:token", userController.resetPassword);
 
 //api/user/grocery-item/id

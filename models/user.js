@@ -16,6 +16,7 @@ const userSchema = new Schema({
 
 userSchema.pre("save", function (next) {
   var user = this;
+  console.log("pre save")
   console.log(user);
   if (!user.isModified("password")) return next();
   bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
@@ -23,6 +24,20 @@ userSchema.pre("save", function (next) {
     bcrypt.hash(user.password, salt, function (err, hash) {
       if (err) return next(err);
       user.password = hash;
+      next();
+    });
+  });
+});
+userSchema.pre("findOneAndUpdate", function (next) {
+  var user = this;
+  console.log("pre find one and update")
+  console.log(user);
+  if (!user._update.password) return next();
+  bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
+    if (err) return next(err);
+    bcrypt.hash(user._update.password, salt, function (err, hash) {
+      if (err) return next(err);
+      user._update.password = hash;
       next();
     });
   });

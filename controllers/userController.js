@@ -66,21 +66,24 @@ module.exports = {
   },
 
   getByToken: function (req, res) {
-    db.User.findOne({ resetPasswordToken: req.params.token })
-      .then((dbModel) => {
+    db.User.findOne({ resetPasswordToken: req.params.token }).then(
+      (dbModel) => {
         res.json(dbModel._id);
-      });
+      }
+    );
   },
 
   updatePassword: function (req, res) {
-    console.log(req.body);
     db.User.findByIdAndUpdate(
       req.body._id,
       { password: req.body.password },
+      {new:true},
       function (err, docs) {
         if (err) {
+          console.log("UpdatePassword error")
           console.log(err);
         } else {
+          console.log("UpdatePassword docs")
           console.log(docs);
         }
       }
@@ -126,13 +129,11 @@ module.exports = {
   setResetToken: function (req, res) {
     //find one user where the email matches the email submitted
     const token = require("crypto").randomBytes(20).toString("hex");
-
     db.User.findOneAndUpdate(
       { email: req.body.email },
-      { restPasswordToken: token },
+      {$set: { resetPasswordToken: token }},
+      {new: true},
       function (err, response) {
-        console.log(err);
-        console.log(response);
         if (err) {
           res.status(422).json(err);
         } else if (!response) {
@@ -156,8 +157,10 @@ module.exports = {
           //step 3
           transporter.sendMail(mailOptions, (err) => {
             if (err) {
+              console.log("Send Reset Token")
               console.log("Error has occurred");
             } else {
+              console.log("Send Reset Token")
               console.log("Email Sent");
             }
           });
