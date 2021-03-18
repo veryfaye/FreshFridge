@@ -11,11 +11,12 @@ const userSchema = new Schema({
   date: { type: Date, default: Date.now },
   fridges: [{ type: Schema.Types.ObjectId, ref: "Fridge" }],
   foods: [{ type: Schema.Types.ObjectId, ref: "Food" }],
-  restPasswordToken: { type: String },
+  resetPasswordToken: { type: String },
 });
 
 userSchema.pre("save", function (next) {
   var user = this;
+  console.log(user);
   if (!user.isModified("password")) return next();
   bcrypt.genSalt(SALT_WORK_FACTOR, function (err, salt) {
     if (err) return next(err);

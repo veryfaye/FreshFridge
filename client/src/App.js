@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
 import "./style/App.css";
 import { BrowserRouter as Router, Switch, Route, Link, Redirect } from "react-router-dom";
@@ -6,6 +6,7 @@ import Login from "./components/Login";
 import Signup from "./components/Signup";
 import Home from "./components/Home";
 import Moment from "./components/Date";
+import ResetPass from "./components/ResetPassword"
 function App() {
 
   const [auth, setAuth] = useState(false);
@@ -47,6 +48,9 @@ function App() {
           </Route>
           <Route path="/sign-up" component={Signup} />
           <Route path="/home" component={Home} />
+          <Route exact path="/resetpass/:token">
+            <ResetPass />
+          </Route>
         </Switch>
       </div>
     </Router>

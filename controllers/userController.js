@@ -65,7 +65,29 @@ module.exports = {
     res.json({ user: { email: "", role: "" }, success: true });
   },
 
-  addGroceryItem: function(req,res){
+  getByToken: function (req, res) {
+    db.User.findOne({ resetPasswordToken: req.params.token })
+      .then((dbModel) => {
+        res.json(dbModel._id);
+      });
+  },
+
+  updatePassword: function (req, res) {
+    console.log(req.body);
+    db.User.findByIdAndUpdate(
+      req.body._id,
+      { password: req.body.password },
+      function (err, docs) {
+        if (err) {
+          console.log(err);
+        } else {
+          console.log(docs);
+        }
+      }
+    );
+  },
+
+  addGroceryItem: function (req, res) {
     const food = mongoose.Types.ObjectId(req.params.id);
     req.user.foods.push(food);
     req.user.save((err) => {
@@ -82,10 +104,10 @@ module.exports = {
         });
     });
   },
-  deleteGroceryItem:function(req,res){
+  deleteGroceryItem: function (req, res) {
     const food = mongoose.Types.ObjectId(req.params.id);
     const foodIndex = req.user.foods.indexOf(food);
-    req.user.foods.splice(foodIndex,1);
+    req.user.foods.splice(foodIndex, 1);
     req.user.save((err) => {
       if (err)
         res.status(500).json({
@@ -149,15 +171,15 @@ module.exports = {
       }
     );
   },
-  resetPassword: function (req, res) {
-    console.log(req.params);
-    // find one user where the rest token matches the req.params.resetPasswordToken
-    // then update 
-    db.User.findOne(
-      { restPasswordToken: "2183dd06c633d49debda1e2ffa09794dfdc58a6b" },
-      function (err, response) {
-        console.log(response);
-      }
-    );
-  },
+  // resetPassword: function (req, res) {
+  //   console.log(req.params);
+  //   // find one user where the rest token matches the req.params.resetPasswordToken
+  //   // then update
+  //   db.User.findOne(
+  //     { restPasswordToken: "2183dd06c633d49debda1e2ffa09794dfdc58a6b" },
+  //     function (err, response) {
+  //       console.log(response);
+  //     }
+  //   );
+  // },
 };
