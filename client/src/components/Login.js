@@ -7,37 +7,35 @@ export default function Login(props) {
     password: "",
   });
 
-
   // get email, password from user's input
   function handleSubmit() {
     const userEmail = document.querySelector("#email").value.trim();
     const userPassword = document.querySelector("#password").value.trim();
-    setUser({
+    // setUser({
+    //   email: userEmail,
+    //   password: userPassword,
+    // });
+    // console.log(user)
+
+    API.getUser({
       email: userEmail,
       password: userPassword,
-    });
-  
-
-  // useEffect(() => {
-  API.getUser({
-    email: user.email,
-    password: user.password,
-  })
-    .then((response) => {
-      console.log(response);
-      console.log(user.email);
-      if (response.isAuthenticated) {
-        // window.location.replace("/home");
-        alert("it worked");
-      } else {
-        alert("Try again!");
-        //   window.location.reload;
-      }
     })
-    .catch((err) => {
-      console.log(err);
-    })
-  // ,[user]})
+      .then((response) => {
+        console.log(response);
+        console.log(user.email);
+        if (response.isAuthenticated) {
+          // window.location.replace("/home");
+          alert("it worked");
+        } else {
+          alert("Try again!");
+          //   window.location.reload;
+        }
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    // ,[user]})
   }
 
   return (
@@ -50,7 +48,7 @@ export default function Login(props) {
             <label>Email address</label>
             <input
               id="email"
-              onSubmit={handleSubmit}
+              // onSubmit={handleSubmit}
               type="email"
               // value={user.email}
               className="form-control"
@@ -62,7 +60,7 @@ export default function Login(props) {
             <label>Password</label>
             <input
               id="password"
-              onSubmit={handleSubmit}
+              // onSubmit={handleSubmit}
               // value={user.password}
               type="password"
               className="form-control"
@@ -83,7 +81,7 @@ export default function Login(props) {
             </div>
           </div>
 
-          <button type="submit" className="btn btn-primary btn-block">
+          <button type="submit"  onClick={handleSubmit} className="btn btn-primary btn-block">
             Submit
           </button>
           <p className="forgot-password text-right">

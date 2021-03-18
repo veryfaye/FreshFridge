@@ -21,11 +21,17 @@ export default {
   saveFood: function(foodData) {
     return axios.post("/api/food", foodData);
   },
-  getFoods: function() {
-    return axios.get("/api/food");
-  },
-  getFood: function (id) {
-    return axios.get("/api/food/" + id);
+  // getFoods: function() {
+  //   return axios.get("/api/foods");
+  // },
+  getFood: function () {
+    var config = {
+      method: 'get',
+      url: '/api/food',
+      headers: { }
+    };
+    
+    return axios(config);
   },
   // ec
   getAllGrocery: function() {
