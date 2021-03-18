@@ -17,9 +17,12 @@ router.get(
   passport.authenticate("jwt", { session: false }),
   userController.logout
 );
+router.route("/getByToken/:token").get(userController.getByToken);
 
-router.post("/sendResetEmail", userController.setResetToken);
-//router.post("/resetPassword/:token", userController.resetPassword);
+router.route("/updatePassword").put(userController.updatePassword);
+
+router.put("/sendResetEmail", userController.setResetToken);
+// router.post("/resetPassword/:token", userController.resetPassword);
 
 //api/user/grocery-item/id
 router.put(

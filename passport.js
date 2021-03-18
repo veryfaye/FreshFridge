@@ -2,7 +2,6 @@ const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const JwtStrategy = require("passport-jwt").Strategy;
 const db = require("./models");
-const User = require("./models/user");
 
 const cookieExtractor = (req) => {
   let token = null;
@@ -17,7 +16,7 @@ passport.use(
   new JwtStrategy(
     { jwtFromRequest: cookieExtractor, secretOrKey: "FreshFridge" },
     (payload, done) => {
-      User.findById({ _id: payload.sub }, (err, user) => {
+      db.User.findById({ _id: payload.sub }, (err, user) => {
         if (err) {
           return done(err, false);
         } else if (user) {
@@ -38,7 +37,7 @@ passport.use(
       passwordField: "password",
     },
     (email, password, done) => {
-      User.findOne({ email }, (err, user) => {
+      db.User.findOne({ email }, (err, user) => {
         // something went wrong with db
         if (err) {
           return done(err);
