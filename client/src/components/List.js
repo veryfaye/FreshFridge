@@ -39,6 +39,7 @@ export default function List() {
         key={food._id} 
         message={food.product} 
         deleteItem={()=>handleDeleteItem(food._id)}
+        moveItem={()=>handleMoveItem(food._id, food.product, food.shelfLife)}
         />;
       });
     }
@@ -80,12 +81,23 @@ export default function List() {
     setGrowingFoodList(foodList);
   };
 
-  const moveNote = (id) => {
-    alert("hello world");
+  const handleMoveItem = (id, product, shelfLife) => {
+    const foodList = [...growingFoodList];
+    setGrowingFoodList(foodList.filter((product) => product._id !== id));
+    let purchDate= new Date().getTime();
+    let expDate= purchDate + shelfLife*24*60*60*1000
+    API.addFridge({ 
+      product: product,
+      purchaseDate: purchDate,
+      expirationDate: expDate,
+    })
+    .then((res) => {})
+    .catch((err) => {
+      console.log(err);
+    });
   };
 
   const handleDeleteItem = (id) => {
-    console.log(id)
     const foodList = [...growingFoodList];
     setGrowingFoodList(foodList.filter((product) => product._id !== id));
     API.removeGrocery(id)
