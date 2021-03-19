@@ -8,6 +8,7 @@ export default function Fridge() {
                     <div>
                         <div className="row">
                             <div className="col-sm-6"><h1>Fridge</h1></div>
+                          
                         </div>
                     </div>
                 </div>

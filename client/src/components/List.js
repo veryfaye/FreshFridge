@@ -33,7 +33,8 @@ export default function List() {
           // <div key={food._id}>{food.product}</div>
           <Item
           key={food._id}
-          message={food.product} />
+          message={food.product} 
+         />
         );
       });
     }
@@ -83,6 +84,32 @@ export default function List() {
   //   setNotes(notes.filter((note) => note.id !== id));
   // };
 
+
+  //when page renders after sign-in
+  // get route to display all grocery list items from User's foods list(grocery)
+  // getAllGrocery: function() {
+  //   return axios.get("/api/user/get-all/grocery"); 
+  // },
+
+  // when x-delete button is clicked, we use delete route to remove the item from  foods list(grocery) BY ID
+  // removeGrocery: function(id) {
+  //   return axios.get("/api/food/delete/" + id); 
+  // }
+
+  // when move button is clicked, we use we use delete route to remove the item from foods list(grocery) BY ID
+  // we use get route to grab item from FOODS 
+  // use post route to add item to User's db
+
+  // when fridge components mounts
+  // get all items from FOODS db
+  // get and display all items from User's fridge 
+  // 
+
+
+
+
+
+
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">
@@ -110,7 +137,7 @@ export default function List() {
           </form>
         
           <div>{renderFood()}</div>
-          
+  
           {/* {notes.map((note) => (
             <Item
               id={note.id}

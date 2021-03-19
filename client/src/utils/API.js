@@ -28,11 +28,14 @@ export default {
     return axios(config);
   },
   // ec
+  // getAllGrocery: function() {
+  //   return axios.put("/api/user/get-all/grocery"); 
+  // },
   getAllGrocery: function() {
-    return axios.put("/api/user/get-all/grocery"); 
+    return axios.get("/api/user/get-all/grocery"); 
   },
   addGrocery: function(id) {
-    return axios.put("/api/user/grocery-item/" + id); 
+    return axios.post("/api/user/grocery-item/" + id); 
   },
   // add fridge items
   addFridge: function(fridgeData) {
