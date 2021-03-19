@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import API from "../utils/API";
-import Item from "./Item"
+import Item from "./Item";
 
 export default function List() {
   const [grocItem, setGrocItem] = useState([]);
@@ -9,8 +9,16 @@ export default function List() {
   useEffect(() => {
     API.getFood()
       .then((res) => {
-        console.log(res.data);
         setGrocItem(res.data);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+
+    API.getAllGrocery()
+      .then((res) => {
+        setGrowingFoodList(res.data.foods);
+        console.log(growingFoodList);
       })
       .catch((err) => {
         console.log(err);
@@ -23,101 +31,96 @@ export default function List() {
 
   const renderFood = () => {
     let FoodResult = null;
-    
+
     //find a mach in the data
-    console.log("******gfl",growingFoodList);
     if (growingFoodList.length > 0) {
       FoodResult = growingFoodList.map((food) => {
-        console.log("******food",food);
-        return (
-          // <div key={food._id}>{food.product}</div>
-          <Item
-          key={food._id}
-          message={food.product} 
-         />
-        );
+        return <Item 
+        key={food._id} 
+        message={food.product} 
+        deleteItem={()=>handleDeleteItem(food._id)}
+        />;
       });
     }
 
-  console.log("******FoodResult",FoodResult);
-     {/* {notes.map((note) => (
+    {
+      /* {notes.map((note) => (
             <Item
               id={note.id}
               message={note.message}
               deleteNote={(id) => deleteNote(id, notes, setNotes)}
               moveNote={(id) => moveNote(id)}
             />
-          ))} */}
+          ))} */
+    }
 
     return FoodResult;
   };
 
   const handleFindFood = (event) => {
-    //console.log("*****grocItem",grocItem);
     event.preventDefault();
-
     //get the picked name
     const userInput = document.querySelector("#test").value.toLowerCase();
-
     //get the state
     const foodList = [...growingFoodList];
-
     //find the match - just iterate
     grocItem.map((food) => {
       //check for match
       if (food.product.toLowerCase() === userInput) {
         foodList.push(food);
+        API.addGrocery(food._id)
+          .then((res) => {})
+          .catch((err) => {
+            console.log(err);
+          });
       }
-      document.querySelector("#test").value=""
+      document.querySelector("#test").value = "";
     });
-
     //set state of growing list
     setGrowingFoodList(foodList);
-    console.log("*******growingFoodList", growingFoodList);
   };
 
   const moveNote = (id) => {
     alert("hello world");
   };
 
-  // const deleteNote = (id, notes, setNotes) => {
-  //   setNotes(notes.filter((note) => note.id !== id));
-  // };
-
+  const handleDeleteItem = (id) => {
+    console.log(id)
+    const foodList = [...growingFoodList];
+    setGrowingFoodList(foodList.filter((product) => product._id !== id));
+    API.removeGrocery(id)
+    .then((res) => {})
+    .catch((err) => {
+      console.log(err);
+    });
+  };
 
   //when page renders after sign-in
   // get route to display all grocery list items from User's foods list(grocery)
   // getAllGrocery: function() {
-  //   return axios.get("/api/user/get-all/grocery"); 
+  //   return axios.get("/api/user/get-all/grocery");
   // },
 
   // when x-delete button is clicked, we use delete route to remove the item from  foods list(grocery) BY ID
   // removeGrocery: function(id) {
-  //   return axios.get("/api/food/delete/" + id); 
+  //   return axios.get("/api/food/delete/" + id);
   // }
 
   // when move button is clicked, we use we use delete route to remove the item from foods list(grocery) BY ID
-  // we use get route to grab item from FOODS 
+  // we use get route to grab item from FOODS
   // use post route to add item to User's db
 
   // when fridge components mounts
   // get all items from FOODS db
-  // get and display all items from User's fridge 
-  // 
-
-
-
-
-
+  // get and display all items from User's fridge
+  //
 
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">
         <div>
           <h2>Add items to your grocery list!</h2>
-          <form
-          // onSubmit={(e) => handleSubmit(e, notes, setNotes, input, setInput)}
-          >
+          <form>
             <div className="list container">
               <div className="input-group mb-3">
                 <input
@@ -125,27 +128,20 @@ export default function List() {
                   type="text"
                   className="input form-control"
                   placeholder="Grocery Item"
-                  // onChange={(e) => setInput(e.target.value)}
-                  // value={input}
-                  
                 />
-                <button id="addButton" className="btn btn-success" onClick={(event) => {handleFindFood(event)}}>
+                <button
+                  id="addButton"
+                  className="btn btn-success"
+                  onClick={(event) => {
+                    handleFindFood(event);
+                  }}
+                >
                   ADD
                 </button>
               </div>
             </div>
           </form>
-        
           <div>{renderFood()}</div>
-  
-          {/* {notes.map((note) => (
-            <Item
-              id={note.id}
-              message={note.message}
-              deleteNote={(id) => deleteNote(id, notes, setNotes)}
-              moveNote={(id) => moveNote(id)}
-            />
-          ))} */}
           <hr />
         </div>
       </div>

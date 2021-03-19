@@ -8,7 +8,8 @@ export default function Login(props) {
   });
 
   // get email, password from user's input
-  function handleSubmit() {
+  function handleSubmit(e) {
+    e.preventDefault();
     const userEmail = document.querySelector("#email").value.trim();
     const userPassword = document.querySelector("#password").value.trim();
     // setUser({
@@ -24,16 +25,17 @@ export default function Login(props) {
       .then((response) => {
         console.log(response);
         console.log(user.email);
-        if (response.isAuthenticated) {
-          // window.location.replace("/home");
-          alert("it worked");
-        } else {
-          alert("Try again!");
-          //   window.location.reload;
+        if (response.data.isAuthenticated) {
+          window.location.replace("/home");
+          // alert("it worked");
+        // } else {
+        //   alert("Try again!");
+        //   //   window.location.reload;
         }
       })
       .catch((err) => {
         console.log(err);
+        alert("Try again!");
       });
     // ,[user]})
   }
