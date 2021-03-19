@@ -38,7 +38,7 @@ export default {
   },
   // ec
   getAllGrocery: function() {
-    return axios.put("/api/user/get-all/grocery"); 
+    return axios.get("/api/user/get-all/grocery"); 
   },
   addGrocery: function(id) {
     return axios.put("/api/user/grocery-item/" + id); 
