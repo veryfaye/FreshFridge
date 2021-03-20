@@ -4,8 +4,22 @@ import API from "../utils/API";
 import List from "./List";
 import Fridge from "./Fridge";
 import Moment from "./Date";
+
+import API from "../utils/API";
+
+function handleLogout() {
+  API.logoutUser({})
+    .then((response) => {
+      window.location.replace("/sign-in");
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+}
+
 import { StoreContext } from "../utils/store";
 // import Item from "./item";
+
 
 //
 export default function Home() {
@@ -133,7 +147,11 @@ export default function Home() {
           <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">
-                <Link className="nav-link" to={"/sign-in"}>
+                <Link
+                  className="nav-link"
+                  to={"/sign-in"}
+                  onClick={handleLogout}
+                >
                   Logout
                 </Link>
               </li>
