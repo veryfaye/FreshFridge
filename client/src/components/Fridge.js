@@ -1,30 +1,21 @@
 import React, { useEffect, useContext, useState } from "react";
 import API from "../utils/API";
 import FridgeItem from "./FridgeItem";
-import ItemContext from "./Home";
 import { StoreContext } from "../utils/store";
-import Moment from "./Date";
 
 export default function Fridge() {
-//   const {
-//     grocery: [grocItem, setGrocItem],
-//   } = React.useContext(StoreContext);
 
   const {
     list: [growingFoodList, setGrowingFoodList],
   } = useContext(StoreContext);
 
-
   const [fridgeItem, setFridgeItem] = useState([]);
   console.log("FRIDGEITEM", fridgeItem)
 
-
   useEffect(() => {
-    // console.log("****rerendering");
   }, [fridgeItem]);
 
   useEffect(() => {
-    // console.log("****rerendering");
   }, [growingFoodList]);
 
   useEffect(() => {
@@ -40,7 +31,6 @@ export default function Fridge() {
   }, []);
 
   function getDate(date) {
-    // format date to mm-dd-yyyy
     const splitDate = date.substr(0, 10).split("-");
     return splitDate[1] + "-" + splitDate[2] + "-" + splitDate[0];
   }
@@ -77,7 +67,7 @@ export default function Fridge() {
 
   const renderFood = () => {
     let FoodResult = null;
-    //find a mach in the data
+    //find a match in the data
     if (fridgeItem.length > 0) {
     
       return fridgeItem.map((food) => {
@@ -92,7 +82,6 @@ export default function Fridge() {
         );
       });
     }
-    // return FoodResult;
   };
 
   return (
