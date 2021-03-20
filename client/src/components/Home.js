@@ -4,6 +4,8 @@ import API from "../utils/API";
 import List from "./List";
 import Fridge from "./Fridge";
 import Moment from "./Date";
+import { StoreContext } from "../utils/store";
+// import Item from "./item";
 
 function handleLogout() {
   API.logoutUser({})
@@ -14,9 +16,6 @@ function handleLogout() {
       console.log(err);
     });
 }
-
-import { StoreContext } from "../utils/store";
-// import Item from "./item";
 
 
 //
