@@ -19,6 +19,8 @@ export default function List() {
     getData: [loadData],
   } = React.useContext(StoreContext);
 
+  const [suggestionsListComponent, setListComponent] = useState(<div></div>)
+
   console.log("88888888888888groc", grocItem);
   // const { grocery } = React.useContext(StoreContext);
   // const { list } = React.useContext(StoreContext);
@@ -48,7 +50,7 @@ export default function List() {
 
   useEffect(() => {
     console.log("****rerendering");
-  }, [growingFoodList]);
+  }, [growingFoodList], suggestionsListComponent);
 
   const renderFood = () => {
     let FoodResult = null;
@@ -122,13 +124,53 @@ export default function List() {
       });
   };
 
+  const onKeyDown = () => {
+    console.log("onKeyDown");
+  };
+
+  const onClick = () => {
+    console.log("onClick");
+  };
+
+  // let suggestionsListComponent = (<div>line 133</div>);
   const handleInputChange = (e) => {
     let userFoodInput = e.target.value;
-    console.log(userFoodInput);
-    let possibleFoods = grocItem.filter((foodItem) =>
+    console.log(userFoodInput.length);
+    if (userFoodInput.length > 2){
+      console.log("length is more than 2")
+      let possibleFoods = grocItem.filter((foodItem) =>
       foodItem.product.toLowerCase().includes(userFoodInput.toLowerCase())
     );
-    console.log(possibleFoods);
+    // console.log(possibleFoods);
+
+    
+    if (userFoodInput) {
+      if (possibleFoods.length) {
+        setListComponent(
+          <ul className="suggestions">
+            {possibleFoods.map((suggestion, index) => {
+              return (
+                <li key={suggestion._id} onClick={onClick}>
+                  {suggestion.product}
+                </li>
+              );
+            })}
+          </ul>
+        );
+      } else {
+        setListComponent(
+          <div>
+            <em>No suggestions!</em>
+          </div>
+        );
+      }
+    }
+    }
+    else {
+      console.log("length is less than 3")
+      setListComponent(<div></div>)
+    }
+    
   };
 
   return (
@@ -139,14 +181,19 @@ export default function List() {
           <form>
             <div className="list container">
               <div className="input-group mb-3">
-              <input
-                  id="input"
-                  type="text"
-                  className="input form-control"
-                  placeholder="Grocery Item"
-                  onChange={handleInputChange}
-                />
-                <ul id="autocomplete-results"></ul>
+                <React.Fragment>
+                  <input
+                    id="input"
+                    type="text"
+                    className="input form-control"
+                    placeholder="Grocery Item"
+                    onChange={handleInputChange}
+                    onKeyDown={onKeyDown}
+                    // value={userInput}
+                  />
+                  {suggestionsListComponent}
+                </React.Fragment>
+                {/* <ul id="autocomplete-results"></ul> */}
                 <button
                   id="addButton"
                   className="btn btn-success"
