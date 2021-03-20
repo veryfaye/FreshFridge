@@ -5,8 +5,6 @@ import List from "./List";
 import Fridge from "./Fridge";
 import Moment from "./Date";
 
-import API from "../utils/API";
-
 function handleLogout() {
   API.logoutUser({})
     .then((response) => {
