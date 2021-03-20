@@ -124,11 +124,12 @@ export default function List() {
             <div className="list container">
               <div className="input-group mb-3">
                 <input
-                  id="test"
+                  id="test autocomplete-input"
                   type="text"
                   className="input form-control"
                   placeholder="Grocery Item"
                 />
+                <ul id="autocomplete-results"></ul>
                 <button
                   id="addButton"
                   className="btn btn-success"
