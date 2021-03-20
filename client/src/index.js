@@ -6,8 +6,8 @@ import App from "./App";
 import StoreProvider from "./utils/store";
 
 ReactDOM.render(
-  <BrowserRouter>
-    <App />
-  </BrowserRouter>,
+  //<BrowserRouter>
+    <App />,
+  //</BrowserRouter>,
   document.getElementById("root")
 );
