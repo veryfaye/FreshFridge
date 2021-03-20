@@ -1,12 +1,9 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect } from "react";
 import API from "../utils/API";
 import Item from "./Item";
-import ItemContext from "./Home";
 import { StoreContext } from "../utils/store";
 
 export default function List() {
-  // const [grocItem, setGrocItem] = useState([]);
-  // const [growingFoodList, setGrowingFoodList] = useState([]);
   const {
     grocery: [grocItem, setGrocItem],
   } = React.useContext(StoreContext);
@@ -15,41 +12,15 @@ export default function List() {
     list: [growingFoodList, setGrowingFoodList],
   } = React.useContext(StoreContext);
 
-  
   const {
     getData: [loadData],
   } = React.useContext(StoreContext);
-
-  console.log("88888888888888groc",grocItem)
-  // const { grocery } = React.useContext(StoreContext);
-  // const { list } = React.useContext(StoreContext);
-
-  // useEffect(() => {
-  //   API.getFood()
-  //     .then((res) => {
-  //       setGrocItem(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-
-  //   API.getAllGrocery()
-  //     .then((res) => {
-  //       setGrowingFoodList(res.data.foods);
-  //       console.log(growingFoodList);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
 
   useEffect(() => {
     loadData();
   }, []);
 
-  useEffect(() => {
-    console.log("****rerendering");
-  }, [growingFoodList]);
+  useEffect(() => {}, [growingFoodList]);
 
   const renderFood = () => {
     let FoodResult = null;
@@ -109,6 +80,12 @@ export default function List() {
       .catch((err) => {
         console.log(err);
       });
+    API.removeGrocery(id)
+      .then((res) => {})
+      .catch((err) => {
+        console.log(err);
+      });
+    window.location.reload();
   };
 
   const handleDeleteItem = (id) => {
@@ -116,7 +93,7 @@ export default function List() {
     setGrowingFoodList(foodList.filter((product) => product._id !== id));
     API.removeGrocery(id)
       .then((res) => {
-        console.log(res)
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);

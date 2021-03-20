@@ -55,11 +55,12 @@ export default {
     return axios.get("/api/fridge"); 
   }, 
   // update the user fridge
-  updateFridge: function(id) {
-    return axios.get("/api/fridge/" + id); 
+  updateFridge: function(id, fridgeData) {
+    return axios.put("/api/fridge/" + id, fridgeData); 
   }, 
   // remove grocery items
   removeGrocery: function(id) {
-    return axios.delete("/api/user/delete/" + id); 
+    console.log(typeof id)
+    return axios.put("/api/user/delete/" + id); 
   }
 };
