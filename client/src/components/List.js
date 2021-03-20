@@ -15,12 +15,10 @@ export default function List() {
     list: [growingFoodList, setGrowingFoodList],
   } = React.useContext(StoreContext);
 
-  
   const {
     getData: [loadData],
   } = React.useContext(StoreContext);
 
-  console.log("88888888888888groc",grocItem)
   // const { grocery } = React.useContext(StoreContext);
   // const { list } = React.useContext(StoreContext);
 
@@ -63,8 +61,9 @@ export default function List() {
             message={food.product}
             deleteItem={() => handleDeleteItem(food._id)}
             moveItem={() =>
-              handleMoveItem(food._id, food.product, food.shelfLife)
-            }
+              handleMoveItem(food._id, food.product, food.shelfLife)}
+            
+            
           />
         );
       });
@@ -109,6 +108,15 @@ export default function List() {
       .catch((err) => {
         console.log(err);
       });
+    API.removeGrocery(id)
+      .then((res) => {
+        // window.location.reload
+        // console.log(res)
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+      window.location.reload()
   };
 
   const handleDeleteItem = (id) => {
@@ -116,12 +124,14 @@ export default function List() {
     setGrowingFoodList(foodList.filter((product) => product._id !== id));
     API.removeGrocery(id)
       .then((res) => {
-        console.log(res)
+        console.log(res);
       })
       .catch((err) => {
         console.log(err);
       });
   };
+
+
 
   return (
     <div className="auth-wrapper">

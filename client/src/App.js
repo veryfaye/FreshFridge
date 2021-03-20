@@ -25,6 +25,7 @@ function App() {
   useEffect(() => {
     loadData();
   }, []);
+  
 
   const loadData = () => {
     API.getFood()
