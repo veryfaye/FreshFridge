@@ -60,6 +60,6 @@ export default {
   }, 
   // remove grocery items
   removeGrocery: function(id) {
-    return axios.put("/api/user/delete/" + id); 
+    return axios.delete("/api/user/delete/" + id); 
   }
 };
