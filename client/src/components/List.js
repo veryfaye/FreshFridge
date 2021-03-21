@@ -1,12 +1,9 @@
-import React, { useEffect, useContext, useState } from "react";
+import React, { useEffect } from "react";
 import API from "../utils/API";
 import Item from "./Item";
-import ItemContext from "./Home";
 import { StoreContext } from "../utils/store";
 
 export default function List() {
-  // const [grocItem, setGrocItem] = useState([]);
-  // const [growingFoodList, setGrowingFoodList] = useState([]);
   const {
     grocery: [grocItem, setGrocItem],
   } = React.useContext(StoreContext);
@@ -21,35 +18,11 @@ export default function List() {
 
   const [suggestionsListComponent, setListComponent] = useState(<div></div>)
 
-  console.log("88888888888888groc", grocItem);
-  // const { grocery } = React.useContext(StoreContext);
-  // const { list } = React.useContext(StoreContext);
-
-  // useEffect(() => {
-  //   API.getFood()
-  //     .then((res) => {
-  //       setGrocItem(res.data);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-
-  //   API.getAllGrocery()
-  //     .then((res) => {
-  //       setGrowingFoodList(res.data.foods);
-  //       console.log(growingFoodList);
-  //     })
-  //     .catch((err) => {
-  //       console.log(err);
-  //     });
-  // }, []);
-
   useEffect(() => {
     loadData();
   }, []);
 
   useEffect(() => {
-    console.log("****rerendering");
   }, [growingFoodList], suggestionsListComponent);
 
   const renderFood = () => {
@@ -110,6 +83,14 @@ export default function List() {
       .catch((err) => {
         console.log(err);
       });
+    API.removeGrocery(id)
+      .then((res) => {
+          window.location.reload();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+   
   };
 
   const handleDeleteItem = (id) => {
