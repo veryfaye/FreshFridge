@@ -81,11 +81,13 @@ export default function List() {
         console.log(err);
       });
     API.removeGrocery(id)
-      .then((res) => {})
+      .then((res) => {
+          window.location.reload();
+      })
       .catch((err) => {
         console.log(err);
       });
-    window.location.reload();
+   
   };
 
   const handleDeleteItem = (id) => {
