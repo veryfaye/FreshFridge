@@ -117,7 +117,7 @@ export default function List() {
           <ul>
             {possibleFoods.map((suggestion, index) => {
               return (
-                <li
+                <button
                   key={suggestion._id}
                   onClick={(e) => {
                     handleFindFood(e);
@@ -125,7 +125,7 @@ export default function List() {
                   id={suggestion._id}
                 >
                   {suggestion.product}
-                </li>
+                </button>
               );
             })}
           </ul>
