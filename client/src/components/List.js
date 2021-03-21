@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import API from "../utils/API";
 import Item from "./Item";
 import { StoreContext } from "../utils/store";
@@ -16,11 +16,13 @@ export default function List() {
     getData: [loadData],
   } = React.useContext(StoreContext);
 
+  const [suggestionsListComponent, setListComponent] = useState(<div></div>);
+
   useEffect(() => {
     loadData();
   }, []);
 
-  useEffect(() => {}, [growingFoodList]);
+  useEffect(() => {}, [growingFoodList], suggestionsListComponent);
 
   const renderFood = () => {
     let FoodResult = null;
@@ -45,14 +47,12 @@ export default function List() {
 
   const handleFindFood = (event) => {
     event.preventDefault();
-    //get the picked name
-    const userInput = document.querySelector("#input").value.toLowerCase();
     //get the state
     const foodList = [...growingFoodList];
     //find the match - iterate
     grocItem.map((food) => {
       //check for match
-      if (food.product.toLowerCase() === userInput) {
+      if (food.product === event.target.textContent) {
         foodList.push(food);
         API.addGrocery(food._id)
           .then((res) => {})
@@ -63,6 +63,7 @@ export default function List() {
       document.querySelector("#input").value = "";
     });
     //set state of growing list
+    setListComponent(<div></div>);
     setGrowingFoodList(foodList);
   };
 
@@ -82,12 +83,11 @@ export default function List() {
       });
     API.removeGrocery(id)
       .then((res) => {
-          window.location.reload();
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
       });
-   
   };
 
   const handleDeleteItem = (id) => {
@@ -102,6 +102,46 @@ export default function List() {
       });
   };
 
+  // let suggestionsListComponent = (<div>line 133</div>);
+  const handleInputChange = (e) => {
+    let userFoodInput = e.target.value;
+
+    if (userFoodInput.length > 2) {
+
+      let possibleFoods = grocItem.filter((foodItem) =>
+        foodItem.product.toLowerCase().includes(userFoodInput.toLowerCase())
+      );
+
+      if (possibleFoods.length) {
+        setListComponent(
+          <ul>
+            {possibleFoods.map((suggestion, index) => {
+              return (
+                <li
+                  key={suggestion._id}
+                  onClick={(e) => {
+                    handleFindFood(e);
+                  }}
+                  id={suggestion._id}
+                >
+                  {suggestion.product}
+                </li>
+              );
+            })}
+          </ul>
+        );
+      } else {
+        setListComponent(
+          <div>
+            <em>No suggestions!</em>
+          </div>
+        );
+      }
+    } else {
+      setListComponent(<div></div>);
+    }
+  };
+
   return (
     <div className="auth-wrapper">
       <div className="auth-inner">
@@ -110,21 +150,16 @@ export default function List() {
           <form>
             <div className="list container">
               <div className="input-group mb-3">
-                <input
-                  id="input"
-                  type="text"
-                  className="input form-control"
-                  placeholder="Grocery Item"
-                />
-                <button
-                  id="addButton"
-                  className="btn btn-success"
-                  onClick={(event) => {
-                    handleFindFood(event);
-                  }}
-                >
-                  ADD
-                </button>
+                <React.Fragment>
+                  <input
+                    id="input"
+                    type="text"
+                    className="input form-control"
+                    placeholder="Grocery Item"
+                    onChange={handleInputChange}
+                  />
+                  {suggestionsListComponent}
+                </React.Fragment>
               </div>
             </div>
           </form>

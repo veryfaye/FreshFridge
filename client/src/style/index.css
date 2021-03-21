@@ -84,3 +84,7 @@ html,
 .forgot-password a {
   color: #167bff;
 }
+
+.suggestions:active, .suggestions:hover {
+  color: red
+}
