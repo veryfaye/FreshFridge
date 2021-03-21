@@ -1,4 +1,8 @@
-/* remove scroll bars */
-.auth-wrapper { 
-    overflow: hidden;
+.auth-wrapper {
+  overflow: hidden;
+}
+
+.foodList {
+  overflow: auto;
+  height: 14em;
 }

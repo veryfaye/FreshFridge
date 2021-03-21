@@ -117,7 +117,6 @@ export default function List() {
             {possibleFoods.map((suggestion, index) => {
               return (
                 <ul>
-                  {" "}
                   <button
                     className="foodCompletionSuggestionButton btn btn-success"
                     key={suggestion._id}
@@ -166,7 +165,7 @@ export default function List() {
             </div>
             {suggestionsListComponent}
           </form>
-          <div>{renderFood()}</div>
+          <div className="foodList">{renderFood()}</div>
           <hr />
         </div>
       </div>

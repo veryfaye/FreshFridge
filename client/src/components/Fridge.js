@@ -93,7 +93,7 @@ export default function Fridge() {
               <div className="col-sm-6">
                 <h1>Fridge</h1>
               </div>
-              <div>{renderFood()}</div>
+              <div className="foodList">{renderFood()}</div>
             </div>
           </div>
         </div>
