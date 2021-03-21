@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import API from "../utils/API";
 import Item from "./Item";
 import { StoreContext } from "../utils/store";
@@ -16,14 +16,13 @@ export default function List() {
     getData: [loadData],
   } = React.useContext(StoreContext);
 
-  const [suggestionsListComponent, setListComponent] = useState(<div></div>)
+  const [suggestionsListComponent, setListComponent] = useState(<div></div>);
 
   useEffect(() => {
     loadData();
   }, []);
 
-  useEffect(() => {
-  }, [growingFoodList], suggestionsListComponent);
+  useEffect(() => {}, [growingFoodList], suggestionsListComponent);
 
   const renderFood = () => {
     let FoodResult = null;
@@ -48,14 +47,12 @@ export default function List() {
 
   const handleFindFood = (event) => {
     event.preventDefault();
-    //get the picked name
-    const userInput = document.querySelector("#input").value.toLowerCase();
     //get the state
     const foodList = [...growingFoodList];
     //find the match - iterate
     grocItem.map((food) => {
       //check for match
-      if (food.product.toLowerCase() === userInput) {
+      if (food.product === event.target.textContent) {
         foodList.push(food);
         API.addGrocery(food._id)
           .then((res) => {})
@@ -66,6 +63,7 @@ export default function List() {
       document.querySelector("#input").value = "";
     });
     //set state of growing list
+    setListComponent(<div></div>);
     setGrowingFoodList(foodList);
   };
 
@@ -85,12 +83,11 @@ export default function List() {
       });
     API.removeGrocery(id)
       .then((res) => {
-          window.location.reload();
+        window.location.reload();
       })
       .catch((err) => {
         console.log(err);
       });
-   
   };
 
   const handleDeleteItem = (id) => {
@@ -105,33 +102,28 @@ export default function List() {
       });
   };
 
-  const onKeyDown = () => {
-    console.log("onKeyDown");
-  };
-
-  const onClick = () => {
-    console.log("onClick");
-  };
-
   // let suggestionsListComponent = (<div>line 133</div>);
   const handleInputChange = (e) => {
     let userFoodInput = e.target.value;
-    console.log(userFoodInput.length);
-    if (userFoodInput.length > 2){
-      console.log("length is more than 2")
-      let possibleFoods = grocItem.filter((foodItem) =>
-      foodItem.product.toLowerCase().includes(userFoodInput.toLowerCase())
-    );
-    // console.log(possibleFoods);
 
-    
-    if (userFoodInput) {
+    if (userFoodInput.length > 2) {
+
+      let possibleFoods = grocItem.filter((foodItem) =>
+        foodItem.product.toLowerCase().includes(userFoodInput.toLowerCase())
+      );
+
       if (possibleFoods.length) {
         setListComponent(
-          <ul >
+          <ul>
             {possibleFoods.map((suggestion, index) => {
               return (
-                <li  key={suggestion._id} onClick={onClick}>
+                <li
+                  key={suggestion._id}
+                  onClick={(e) => {
+                    handleFindFood(e);
+                  }}
+                  id={suggestion._id}
+                >
                   {suggestion.product}
                 </li>
               );
@@ -145,13 +137,9 @@ export default function List() {
           </div>
         );
       }
+    } else {
+      setListComponent(<div></div>);
     }
-    }
-    else {
-      console.log("length is less than 3")
-      setListComponent(<div></div>)
-    }
-    
   };
 
   return (
@@ -169,21 +157,9 @@ export default function List() {
                     className="input form-control"
                     placeholder="Grocery Item"
                     onChange={handleInputChange}
-                    onKeyDown={onKeyDown}
-                    // value={userInput}
                   />
                   {suggestionsListComponent}
                 </React.Fragment>
-                {/* <ul id="autocomplete-results"></ul> */}
-                <button
-                  id="addButton"
-                  className="btn btn-success"
-                  onClick={(event) => {
-                    handleFindFood(event);
-                  }}
-                >
-                  ADD
-                </button>
               </div>
             </div>
           </form>
