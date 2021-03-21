@@ -107,7 +107,6 @@ export default function List() {
     let userFoodInput = e.target.value;
 
     if (userFoodInput.length > 2) {
-
       let possibleFoods = grocItem.filter((foodItem) =>
         foodItem.product.toLowerCase().includes(userFoodInput.toLowerCase())
       );
@@ -117,15 +116,19 @@ export default function List() {
           <ul>
             {possibleFoods.map((suggestion, index) => {
               return (
-                <button
-                  key={suggestion._id}
-                  onClick={(e) => {
-                    handleFindFood(e);
-                  }}
-                  id={suggestion._id}
-                >
-                  {suggestion.product}
-                </button>
+                <ul>
+                  {" "}
+                  <button
+                    className="foodCompletionSuggestionButton btn btn-success"
+                    key={suggestion._id}
+                    onClick={(e) => {
+                      handleFindFood(e);
+                    }}
+                    id={suggestion._id}
+                  >
+                    {suggestion.product}
+                  </button>
+                </ul>
               );
             })}
           </ul>
@@ -158,10 +161,10 @@ export default function List() {
                     placeholder="Grocery Item"
                     onChange={handleInputChange}
                   />
-                  {suggestionsListComponent}
                 </React.Fragment>
               </div>
             </div>
+            {suggestionsListComponent}
           </form>
           <div>{renderFood()}</div>
           <hr />

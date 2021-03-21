@@ -85,6 +85,6 @@ html,
   color: #167bff;
 }
 
-.suggestions:active, .suggestions:hover {
-  color: red
+.foodCompletionSuggestionButton {
+  margin: 5px;
 }
