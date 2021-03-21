@@ -147,10 +147,10 @@ export default function List() {
     if (userFoodInput) {
       if (possibleFoods.length) {
         setListComponent(
-          <ul className="suggestions">
+          <ul >
             {possibleFoods.map((suggestion, index) => {
               return (
-                <li key={suggestion._id} onClick={onClick}>
+                <li  key={suggestion._id} onClick={onClick}>
                   {suggestion.product}
                 </li>
               );
