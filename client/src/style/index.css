@@ -67,6 +67,9 @@ html,
   line-height: 1;
   padding-bottom: 20px;
 }
+.foodList {
+  overflow: auto;
+}
 
 .custom-control-label {
   font-weight: 400;

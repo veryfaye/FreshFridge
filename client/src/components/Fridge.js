@@ -4,29 +4,24 @@ import FridgeItem from "./FridgeItem";
 import { StoreContext } from "../utils/store";
 
 export default function Fridge() {
-
   const {
     list: [growingFoodList, setGrowingFoodList],
   } = useContext(StoreContext);
 
   const [fridgeItem, setFridgeItem] = useState([]);
-  console.log("FRIDGEITEM", fridgeItem)
+  useEffect(() => {}, [fridgeItem]);
 
-  useEffect(() => {
-  }, [fridgeItem]);
-
-  useEffect(() => {
-  }, [growingFoodList]);
+  useEffect(() => {}, [growingFoodList]);
 
   useEffect(() => {
     API.userFridge()
       .then((res) => {
-        let FoodRes = res.data.fridges.filter((food) => !food.tossed && !food.eaten);
+        let FoodRes = res.data.fridges.filter(
+          (food) => !food.tossed && !food.eaten
+        );
         setFridgeItem(FoodRes);
-        console.log("77777777777", FoodRes);
       })
       .catch((err) => {
-        console.log(err);
       });
   }, []);
 
@@ -43,10 +38,8 @@ export default function Fridge() {
       eatenDate: new Date(),
     })
       .then((res) => {
-        console.log("RESPONSE", res);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -58,10 +51,8 @@ export default function Fridge() {
       tossedDate: new Date(),
     })
       .then((res) => {
-        console.log("RESPONSE", res);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -69,7 +60,6 @@ export default function Fridge() {
     let FoodResult = null;
     //find a match in the data
     if (fridgeItem.length > 0) {
-    
       return fridgeItem.map((food) => {
         return (
           <FridgeItem
@@ -89,12 +79,8 @@ export default function Fridge() {
       <div className="auth-wrapper">
         <div className="auth-inner">
           <div>
-            <div className="row">
-              <div className="col-sm-6">
-                <h1>Fridge</h1>
-              </div>
-              <div className="foodList">{renderFood()}</div>
-            </div>
+            <h2>Eat or toss items from your Fridge!</h2>
+            <div className="foodList">{renderFood()}</div>
           </div>
         </div>
       </div>

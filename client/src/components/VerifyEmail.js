@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import API from "../utils/API";
 function VerifyEmail() {
   const [email, setEmail] = useState("");
-  const [successMessage, setSuccessMessage] = useState("")
+  const [successMessage, setSuccessMessage] = useState("");
 
   function handleInputChange(e) {
     const { value } = e.target;
@@ -16,14 +16,11 @@ function VerifyEmail() {
         email: email,
       })
         .then((res) => {
-          if(!res.data.message.msgError){
+          if (!res.data.message.msgError) {
             setSuccessMessage("Email Sent!");
-            console.log(successMessage)
           }
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     }
   }
 
@@ -42,7 +39,7 @@ function VerifyEmail() {
               placeholder="email"
             />
           </div>
-          {successMessage ? <p>{successMessage}</p>:null}
+          {successMessage ? <p>{successMessage}</p> : null}
           <button
             type="submit"
             className="btn btn-primary btn-block"

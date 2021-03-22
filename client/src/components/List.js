@@ -57,7 +57,6 @@ export default function List() {
         API.addGrocery(food._id)
           .then((res) => {})
           .catch((err) => {
-            console.log(err);
           });
       }
       document.querySelector("#input").value = "";
@@ -79,14 +78,12 @@ export default function List() {
     })
       .then((res) => {})
       .catch((err) => {
-        console.log(err);
       });
     API.removeGrocery(id)
       .then((res) => {
         window.location.reload();
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
@@ -95,14 +92,11 @@ export default function List() {
     setGrowingFoodList(foodList.filter((product) => product._id !== id));
     API.removeGrocery(id)
       .then((res) => {
-        console.log(res);
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 
-  // let suggestionsListComponent = (<div>line 133</div>);
   const handleInputChange = (e) => {
     let userFoodInput = e.target.value;
 

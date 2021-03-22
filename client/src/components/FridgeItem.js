@@ -3,7 +3,13 @@ import "../style/Item.css";
 import { Cross } from "@styled-icons/entypo/Cross";
 import { ArrowheadRightOutline } from "@styled-icons/evaicons-outline/ArrowheadRightOutline";
 
-export default function FridgeItem({ id, message, expDate, eatItem, tossItem }) {
+export default function FridgeItem({
+  id,
+  message,
+  expDate,
+  eatItem,
+  tossItem,
+}) {
   return (
     <div className="item">
       <div className="deleteButton">
@@ -11,11 +17,12 @@ export default function FridgeItem({ id, message, expDate, eatItem, tossItem }) 
       </div>
       <div className="foodName">
         <p>
-          {message} {expDate}
+          {message}
           <ArrowheadRightOutline
             className="fridgeButton"
-            onClick={() => (eatItem(id))}
+            onClick={() => eatItem(id)}
           ></ArrowheadRightOutline>
+          <span className="expDate"> Exp: {expDate}</span>
         </p>
       </div>
     </div>
