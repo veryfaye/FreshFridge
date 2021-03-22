@@ -1,7 +1,7 @@
 import React from "react";
 import "../style/Item.css";
-import { Cross } from "@styled-icons/entypo/Cross";
-import { ArrowheadRightOutline } from "@styled-icons/evaicons-outline/ArrowheadRightOutline";
+import { SpoonKnife } from "@styled-icons/icomoon/SpoonKnife";
+import { Trash } from "@styled-icons/ionicons-outline/Trash";
 
 export default function FridgeItem({
   id,
@@ -13,15 +13,15 @@ export default function FridgeItem({
   return (
     <div className="item">
       <div className="deleteButton">
-        <Cross onClick={() => tossItem(id)}></Cross>
+        <Trash onClick={() => tossItem(id)}></Trash>
       </div>
       <div className="foodName">
         <p>
           {message}
-          <ArrowheadRightOutline
+          <SpoonKnife
             className="fridgeButton"
             onClick={() => eatItem(id)}
-          ></ArrowheadRightOutline>
+          ></SpoonKnife>
           <span className="expDate"> Exp: {expDate}</span>
         </p>
       </div>
