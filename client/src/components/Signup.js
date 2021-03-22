@@ -29,11 +29,9 @@ function SignUp() {
         password: newUser.password,
       })
         .then(() => {
-          window.location.replace("/home")
+          window.location.replace("/home");
         })
-        .catch((err) => {
-          console.log(err);
-        });
+        .catch((err) => {});
     }
   }
   return (

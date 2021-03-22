@@ -45,6 +45,7 @@ html,
   justify-content: center;
   flex-direction: column;
   text-align: left;
+  overflow: hidden;
 }
 
 .auth-inner {
@@ -67,6 +68,9 @@ html,
   line-height: 1;
   padding-bottom: 20px;
 }
+.foodList {
+  overflow: auto;
+}
 
 .custom-control-label {
   font-weight: 400;
@@ -85,6 +89,6 @@ html,
   color: #167bff;
 }
 
-.suggestions:active, .suggestions:hover {
-  color: red
+.foodCompletionSuggestionButton {
+  margin: 5px;
 }

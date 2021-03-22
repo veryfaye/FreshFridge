@@ -23,7 +23,6 @@ export default function Login(props) {
         }
       })
       .catch((err) => {
-        console.log(err);
         alert("Try again!");
       });
   }

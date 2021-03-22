@@ -12,7 +12,6 @@ function handleLogout() {
       window.location.replace("/sign-in");
     })
     .catch((err) => {
-      console.log(err);
     });
 }
 

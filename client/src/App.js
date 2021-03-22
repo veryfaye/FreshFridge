@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import "../node_modules/bootstrap/dist/css/bootstrap.min.css";
-import "./style/App.css";
+import "./style/index.css";
 import {
   BrowserRouter as Router,
   Switch,
@@ -34,14 +34,11 @@ function App() {
         API.getAllGrocery()
           .then((res) => {
             setGrowingFoodList(res.data.foods);
-            console.log(growingFoodList);
           })
           .catch((err) => {
-            console.log(err);
           });
       })
       .catch((err) => {
-        console.log(err);
       });
   };
 

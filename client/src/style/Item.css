@@ -29,6 +29,15 @@
   font-size: x-large;
 }
 
+.expDate {
+  text-align: center;
+  padding-top: 10px;
+  font-weight: 700;
+  font-family: Helvetica, sans-serif;
+  font-size: small;
+  padding-left: 10px;
+}
+
 #testingOne {
   background-color: purple;
 }
