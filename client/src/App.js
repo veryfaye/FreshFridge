@@ -26,6 +26,7 @@ function App() {
     console.log(auth);
     API.isAuthenticated()
       .then((res) => {
+        console.log(res);
         setAuth(res.data.isAuthenticated)
         loadData();
       })
