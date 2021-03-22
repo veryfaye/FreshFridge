@@ -56,8 +56,7 @@ export default function List() {
         foodList.push(food);
         API.addGrocery(food._id)
           .then((res) => {})
-          .catch((err) => {
-          });
+          .catch((err) => {});
       }
       document.querySelector("#input").value = "";
     });
@@ -77,24 +76,20 @@ export default function List() {
       expirationDate: expDate,
     })
       .then((res) => {})
-      .catch((err) => {
-      });
+      .catch((err) => {});
     API.removeGrocery(id)
       .then((res) => {
         window.location.reload();
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   };
 
   const handleDeleteItem = (id) => {
     const foodList = [...growingFoodList];
     setGrowingFoodList(foodList.filter((product) => product._id !== id));
     API.removeGrocery(id)
-      .then((res) => {
-      })
-      .catch((err) => {
-      });
+      .then((res) => {})
+      .catch((err) => {});
   };
 
   const handleInputChange = (e) => {
@@ -110,18 +105,16 @@ export default function List() {
           <ul>
             {possibleFoods.map((suggestion, index) => {
               return (
-                <ul>
-                  <button
-                    className="foodCompletionSuggestionButton btn btn-success"
-                    key={suggestion._id}
-                    onClick={(e) => {
-                      handleFindFood(e);
-                    }}
-                    id={suggestion._id}
-                  >
-                    {suggestion.product}
-                  </button>
-                </ul>
+                <button
+                  className="foodCompletionSuggestionButton btn btn-success"
+                  key={suggestion._id}
+                  onClick={(e) => {
+                    handleFindFood(e);
+                  }}
+                  id={suggestion._id}
+                >
+                  {suggestion.product}
+                </button>
               );
             })}
           </ul>
