@@ -60,7 +60,7 @@ module.exports = {
     }
   },
 
-  isAuthenticated: function (req, res) {
+  isUserAuthenticated: function (req, res) {
     if (req.isAuthenticated()) {
       const { email } = req.user;
       res.json({ isAuthenticated: true, user: { email } });

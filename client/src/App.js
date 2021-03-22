@@ -24,7 +24,7 @@ function App() {
 
   useEffect(() => {
     console.log(auth);
-    API.isAuthenticated()
+    API.isUserAuthenticated()
       .then((res) => {
         console.log(res);
         setAuth(res.data.isAuthenticated)

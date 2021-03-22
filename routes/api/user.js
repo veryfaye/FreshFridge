@@ -38,9 +38,9 @@ router.put(
 );
 
 router.get(
-  "/isAuthenticated",
+  "/isUserAuthenticated",
   passport.authenticate("jwt", { session: false }),
-  userController.isAuthenticated
+  userController.isUserAuthenticated
 );
 
 module.exports = router;
