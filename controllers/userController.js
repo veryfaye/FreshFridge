@@ -60,6 +60,13 @@ module.exports = {
     }
   },
 
+  isAuthenticated: function (req, res) {
+    if (req.isAuthenticated()) {
+      const { email } = req.user;
+      res.json({ isAuthenticated: true, user: { email } });
+    }
+  },
+
   logout: function (req, res) {
     res.clearCookie("access_token");
     res.json({ user: { email: "", role: "" }, success: true });

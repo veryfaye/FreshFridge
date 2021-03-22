@@ -23,9 +23,14 @@ function App() {
   const [auth, setAuth] = useState(false);
 
   useEffect(() => {
-    loadData();
-  }, []);
-  
+    console.log(auth);
+    API.isAuthenticated()
+      .then((res) => {
+        setAuth(res.data.isAuthenticated)
+        loadData();
+      })
+      .catch((err) => console.log(err));
+  }, [auth]);
 
   const loadData = () => {
     API.getFood()
@@ -35,17 +40,15 @@ function App() {
           .then((res) => {
             setGrowingFoodList(res.data.foods);
           })
-          .catch((err) => {
-          });
+          .catch((err) => {});
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   };
 
   const store = {
     grocery: [grocItem, setGrocItem],
     list: [growingFoodList, setGrowingFoodList],
-    getData: [loadData]
+    getData: [loadData],
   };
 
   return (
