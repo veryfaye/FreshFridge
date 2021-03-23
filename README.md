@@ -37,5 +37,7 @@ See images below for screenshots of the app, and [here](https://fresh-fridge-pro
  
   ### Home Page
  <img src="/assets/home.png" width="850" height="700">
-# License
+ 
+# License # 
+
 This repository is released under the [MIT License](https://opensource.org/licenses/MIT)
