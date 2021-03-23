@@ -3,7 +3,7 @@
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
  # FreshFridge#
 
-FreshFridge is a MERN application that aims to help alleviate food waste. 
+FreshFridge is a MERN application that aims to help alleviate food waste at the individual level.
 # Table of Contents
 
 * [Link](#Link)
