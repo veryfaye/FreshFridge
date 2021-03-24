@@ -2,12 +2,13 @@ import React from "react";
 import "../style/Item.css";
 import { Cross } from "@styled-icons/entypo/Cross";
 import { ArrowheadRightOutline } from "@styled-icons/evaicons-outline/ArrowheadRightOutline";
+import { CloseOutline } from "@styled-icons/evaicons-outline/CloseOutline";
 
 export default function Item({ id, message, deleteItem, moveItem }) {
   return (
     <div className="item">
       <div className="deleteButton">
-        <Cross onClick={() => deleteItem(id)}></Cross>
+        <CloseOutline onClick={() => deleteItem(id)}></CloseOutline>
       </div>
       <div className="foodName">
         <p>

@@ -2,6 +2,7 @@ import React from "react";
 import "../style/Item.css";
 import { SpoonKnife } from "@styled-icons/icomoon/SpoonKnife";
 import { Trash } from "@styled-icons/ionicons-outline/Trash";
+import { Trash2Outline } from "@styled-icons/evaicons-outline/Trash2Outline";
 
 export default function FridgeItem({
   id,
@@ -13,7 +14,7 @@ export default function FridgeItem({
   return (
     <div className="item">
       <div className="deleteButton">
-        <Trash onClick={() => tossItem(id)}></Trash>
+        <Trash2Outline onClick={() => tossItem(id)}></Trash2Outline>
       </div>
       <div className="foodName">
         <p>
