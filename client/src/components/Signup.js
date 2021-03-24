@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import API from "../utils/API";
 function SignUp() {
   const [newUser, setNewUser] = useState({
@@ -7,9 +7,6 @@ function SignUp() {
     email: "",
     password: "",
   });
-  useEffect(() => {
-    // not sure if anything is needed here
-  }, []);
   function handleInputChange(e) {
     const { name, value } = e.target;
     setNewUser({ ...newUser, [name]: value });

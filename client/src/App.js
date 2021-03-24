@@ -21,11 +21,12 @@ function App() {
   const [grocItem, setGrocItem] = useState([]);
   const [growingFoodList, setGrowingFoodList] = useState([]);
   const [auth, setAuth] = useState(false);
+  const [fridgeItem, setFridgeItem] = useState([]);
 
   useEffect(() => {
     API.isUserAuthenticated()
       .then((res) => {
-        setAuth(res.data.isAuthenticated)
+        setAuth(res.data.isAuthenticated);
         loadData();
       })
       .catch((err) => console.log(err));
@@ -38,6 +39,13 @@ function App() {
         API.getAllGrocery()
           .then((res) => {
             setGrowingFoodList(res.data.foods);
+            API.userFridge()
+              .then((res) => {
+                setFridgeItem(
+                  res.data.fridges.filter((food) => !food.tossed && !food.eaten)
+                );
+              })
+              .catch((err) => {});
           })
           .catch((err) => {});
       })
@@ -48,6 +56,7 @@ function App() {
     grocery: [grocItem, setGrocItem],
     list: [growingFoodList, setGrowingFoodList],
     getData: [loadData],
+    fridgeItem: [fridgeItem, setFridgeItem],
   };
 
   return (
