@@ -23,12 +23,7 @@ export default function List() {
   }, []);
 
   useEffect(
-    () => {
-      // console.log("growingFoodList");
-      // console.log(growingFoodList);
-      // console.log("suggestionsListComponent");
-      // console.log(suggestionsListComponent);
-    },
+    () => {},
     [growingFoodList],
     suggestionsListComponent
   );
