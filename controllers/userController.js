@@ -77,13 +77,8 @@ module.exports = {
     db.User.findByIdAndUpdate(
       req.body._id,
       { password: req.body.password },
-      { new: true },
-      function (err, docs) {
-        if (err) {
-        } else {
-        }
-      }
-    );
+      { new: true }
+    ).then(res.status(200).json({ passwordReset: true }));
   },
 
   addGroceryItem: function (req, res) {

@@ -10,7 +10,9 @@ function ResetPassword() {
       .then((res) => {
         setUser({ _id: res.data });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   function handleInputChange(e) {
