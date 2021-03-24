@@ -26,7 +26,7 @@ export default function List() {
     console.log("growingFoodList");
     console.log(growingFoodList);
     console.log("suggestionsListComponent");
-    console.lot(suggestionsListComponent)
+    console.log(suggestionsListComponent)
   }, [growingFoodList], suggestionsListComponent);
 
   const renderFood = () => {
