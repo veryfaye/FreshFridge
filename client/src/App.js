@@ -31,9 +31,11 @@ function App() {
     API.getFood()
       .then((res) => {
         setGrocItem(res.data);
+        console.log(grocItem);
         API.getAllGrocery()
           .then((res) => {
             setGrowingFoodList(res.data.foods);
+            console.log(growingFoodList);
           })
           .catch((err) => {
           });
