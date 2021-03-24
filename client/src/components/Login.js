@@ -23,6 +23,7 @@ export default function Login(props) {
         }
       })
       .catch((err) => {
+        console.log(err)
         alert("Try again!");
       });
   }
@@ -71,8 +72,7 @@ export default function Login(props) {
             Submit
           </button>
           <p className="forgot-password text-right">
-            Forgot <a href="./resetpass">password?</a>
-            Need to <a href="./sign-up">sign up?</a>
+            Forgot <a href="./resetpass">password?</a> Need to <a href="./sign-up">sign up?</a>
           </p>
         </form>
       </div>

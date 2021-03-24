@@ -21,11 +21,16 @@ function App() {
   const [grocItem, setGrocItem] = useState([]);
   const [growingFoodList, setGrowingFoodList] = useState([]);
   const [auth, setAuth] = useState(false);
+  const [fridgeItem, setFridgeItem] = useState([]);
 
   useEffect(() => {
-    loadData();
-  }, []);
-  
+    API.isUserAuthenticated()
+      .then((res) => {
+        setAuth(res.data.isAuthenticated);
+        loadData();
+      })
+      .catch((err) => console.log(err));
+  }, [auth]);
 
   const loadData = () => {
     API.getFood()
@@ -34,18 +39,24 @@ function App() {
         API.getAllGrocery()
           .then((res) => {
             setGrowingFoodList(res.data.foods);
+            API.userFridge()
+              .then((res) => {
+                setFridgeItem(
+                  res.data.fridges.filter((food) => !food.tossed && !food.eaten)
+                );
+              })
+              .catch((err) => {});
           })
-          .catch((err) => {
-          });
+          .catch((err) => {});
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   };
 
   const store = {
     grocery: [grocItem, setGrocItem],
     list: [growingFoodList, setGrowingFoodList],
-    getData: [loadData]
+    getData: [loadData],
+    fridgeItem: [fridgeItem, setFridgeItem],
   };
 
   return (
@@ -88,7 +99,9 @@ function App() {
               {auth ? <Redirect to="/home" /> : <Login setAuth={setAuth} />}
             </Route>
             <Route path="/sign-up" component={Signup} />
-            <Route path="/home" component={Home} />
+            <Route path="/home">
+              {!auth ? <Redirect to="/sign-in" /> : <Home setAuth={setAuth} />}
+            </Route>
             <Route exact path="/resetpass" component={VerifyEmail} />
             <Route exact path="/resetpass/:token">
               <ResetPass />

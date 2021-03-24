@@ -16,38 +16,35 @@ export default function List() {
     getData: [loadData],
   } = React.useContext(StoreContext);
 
+  const {
+    fridgeItem: [fridgeItem, setFridgeItem],
+  } = React.useContext(StoreContext);
+
   const [suggestionsListComponent, setListComponent] = useState(<div></div>);
 
   useEffect(() => {
     loadData();
   }, []);
 
-  useEffect(
-    () => {},
-    [growingFoodList],
-    suggestionsListComponent
-  );
+  useEffect(() => {}, [growingFoodList], suggestionsListComponent);
 
   const renderFood = () => {
     let FoodResult = null;
 
     //find a match in the data
     if (growingFoodList) {
-      console.log(growingFoodList)
-      //if (growingFoodList.length > 0) {
-        FoodResult = growingFoodList.map((food) => {
-          return (
-            <Item
-              key={food._id}
-              message={food.product}
-              deleteItem={() => handleDeleteItem(food._id)}
-              moveItem={() =>
-                handleMoveItem(food._id, food.product, food.shelfLife)
-              }
-            />
-          );
-        });
-      //}
+      FoodResult = growingFoodList.map((food) => {
+        return (
+          <Item
+            key={food._id}
+            message={food.product}
+            deleteItem={() => handleDeleteItem(food._id)}
+            moveItem={() =>
+              handleMoveItem(food._id, food.product, food.shelfLife)
+            }
+          />
+        );
+      });
     }
     return FoodResult;
   };
@@ -86,7 +83,14 @@ export default function List() {
       .catch((err) => {});
     API.removeGrocery(id)
       .then((res) => {
-        window.location.reload();
+        //window.location.reload();
+      })
+      .catch((err) => {});
+    API.userFridge()
+      .then((res) => {
+        setFridgeItem(
+          res.data.fridges.filter((food) => !food.tossed && !food.eaten)
+        );
       })
       .catch((err) => {});
   };
@@ -101,10 +105,7 @@ export default function List() {
 
   const handleInputChange = (e) => {
     let userFoodInput = e.target.value;
-    console.log(userFoodInput);
-
     if (userFoodInput.length > 2) {
-      console.log(grocItem);
       let possibleFoods = grocItem.filter((foodItem) =>
         foodItem.product.toLowerCase().includes(userFoodInput.toLowerCase())
       );

@@ -8,8 +8,12 @@ export default function Fridge() {
     list: [growingFoodList, setGrowingFoodList],
   } = useContext(StoreContext);
 
-  const [fridgeItem, setFridgeItem] = useState([]);
-  useEffect(() => {}, [fridgeItem]);
+  const {
+    fridgeItem: [fridgeItem, setFridgeItem],
+  } = useContext(StoreContext);
+  useEffect(() => {
+    console.log(fridgeItem);
+  }, [fridgeItem]);
 
   useEffect(() => {}, [growingFoodList]);
 
@@ -21,8 +25,7 @@ export default function Fridge() {
         );
         setFridgeItem(FoodRes);
       })
-      .catch((err) => {
-      });
+      .catch((err) => {});
   }, []);
 
   function getDate(date) {
@@ -37,10 +40,8 @@ export default function Fridge() {
       eaten: true,
       eatenDate: new Date(),
     })
-      .then((res) => {
-      })
-      .catch((err) => {
-      });
+      .then((res) => {})
+      .catch((err) => {});
   };
 
   const handleTossItem = (id) => {
@@ -50,10 +51,8 @@ export default function Fridge() {
       tossed: true,
       tossedDate: new Date(),
     })
-      .then((res) => {
-      })
-      .catch((err) => {
-      });
+      .then((res) => {})
+      .catch((err) => {});
   };
 
   const renderFood = () => {

@@ -62,4 +62,7 @@ export default {
   removeGrocery: function (id) {
     return axios.put("/api/user/delete/" + id);
   },
+  isUserAuthenticated: function(){
+    return axios.get("/api/user/isUserAuthenticated")
+  }
 };

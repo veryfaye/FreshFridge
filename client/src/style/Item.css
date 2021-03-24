@@ -9,7 +9,7 @@
 
 .deleteButton {
   float: left;
-  width: 25px;
+  width: 35px;
   color: red;
   opacity: 50%;
   text-align: center;
@@ -21,6 +21,7 @@
   color: green;
   float: right;
   padding-right:5px;
+  padding-top: 3px;
 }
 
 .foodName {

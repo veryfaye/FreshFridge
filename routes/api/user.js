@@ -37,4 +37,10 @@ router.put(
   userController.deleteGroceryItem
 );
 
+router.get(
+  "/isUserAuthenticated",
+  passport.authenticate("jwt", { session: false }),
+  userController.isUserAuthenticated
+);
+
 module.exports = router;
