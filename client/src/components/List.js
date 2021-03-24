@@ -106,8 +106,10 @@ export default function List() {
 
   const handleInputChange = (e) => {
     let userFoodInput = e.target.value;
+    console.log(userFoodInput);
 
     if (userFoodInput.length > 2) {
+      console.log(grocItem);
       let possibleFoods = grocItem.filter((foodItem) =>
         foodItem.product.toLowerCase().includes(userFoodInput.toLowerCase())
       );
