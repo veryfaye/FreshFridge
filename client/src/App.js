@@ -23,10 +23,8 @@ function App() {
   const [auth, setAuth] = useState(false);
 
   useEffect(() => {
-    console.log(auth);
     API.isUserAuthenticated()
       .then((res) => {
-        console.log(res);
         setAuth(res.data.isAuthenticated)
         loadData();
       })
