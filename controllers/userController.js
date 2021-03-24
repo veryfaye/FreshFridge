@@ -74,18 +74,11 @@ module.exports = {
   },
 
   updatePassword: function (req, res) {
-    console.log(req.body);
     db.User.findByIdAndUpdate(
       req.body._id,
       { password: req.body.password },
-      { new: true },
-      function (err, docs) {
-        if (err) {
-        } else {
-          console.log(docs);
-        }
-      }
-    );
+      { new: true }
+    ).then(res.status(200).json({ passwordReset: true }));
   },
 
   addGroceryItem: function (req, res) {
