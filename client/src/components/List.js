@@ -24,10 +24,10 @@ export default function List() {
 
   useEffect(
     () => {
-      console.log("growingFoodList");
-      console.log(growingFoodList);
-      console.log("suggestionsListComponent");
-      console.log(suggestionsListComponent);
+      // console.log("growingFoodList");
+      // console.log(growingFoodList);
+      // console.log("suggestionsListComponent");
+      // console.log(suggestionsListComponent);
     },
     [growingFoodList],
     suggestionsListComponent
@@ -38,6 +38,7 @@ export default function List() {
 
     //find a match in the data
     if (growingFoodList) {
+      console.log(growingFoodList)
       //if (growingFoodList.length > 0) {
         FoodResult = growingFoodList.map((food) => {
           return (

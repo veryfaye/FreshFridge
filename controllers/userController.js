@@ -74,6 +74,7 @@ module.exports = {
   },
 
   updatePassword: function (req, res) {
+    console.log(req.body);
     db.User.findByIdAndUpdate(
       req.body._id,
       { password: req.body.password },
@@ -81,6 +82,7 @@ module.exports = {
       function (err, docs) {
         if (err) {
         } else {
+          console.log(docs);
         }
       }
     );

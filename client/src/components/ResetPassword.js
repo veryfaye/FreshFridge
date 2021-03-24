@@ -1,6 +1,7 @@
-import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import React, { Component, useEffect, useState } from "react";
+import { BrowserRouter, Redirect, useParams, Switch } from "react-router-dom";
 import API from "../utils/API";
+import Login from "./Login";
 function ResetPassword() {
   const [user, setUser] = useState({ _id: "" });
   const { token } = useParams();
@@ -10,7 +11,9 @@ function ResetPassword() {
       .then((res) => {
         setUser({ _id: res.data });
       })
-      .catch((err) => {});
+      .catch((err) => {
+        console.log(err);
+      });
   }, []);
 
   function handleInputChange(e) {
@@ -26,7 +29,13 @@ function ResetPassword() {
         password: user.password,
       })
         .then(() => {
-          window.location.replace("/sign-in");
+          console.log("pass reset");
+          // window.location.replace("/sign-in");
+          return (
+            <Switch>
+              <Redirect to="/sign-in" />
+            </Switch>
+          );
         })
         .catch((err) => {});
     }
