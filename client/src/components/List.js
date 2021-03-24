@@ -33,8 +33,6 @@ export default function List() {
 
     //find a match in the data
     if (growingFoodList) {
-      console.log(growingFoodList)
-      //if (growingFoodList.length > 0) {
         FoodResult = growingFoodList.map((food) => {
           return (
             <Item
@@ -47,7 +45,6 @@ export default function List() {
             />
           );
         });
-      //}
     }
     return FoodResult;
   };
@@ -101,10 +98,7 @@ export default function List() {
 
   const handleInputChange = (e) => {
     let userFoodInput = e.target.value;
-    console.log(userFoodInput);
-
     if (userFoodInput.length > 2) {
-      console.log(grocItem);
       let possibleFoods = grocItem.filter((foodItem) =>
         foodItem.product.toLowerCase().includes(userFoodInput.toLowerCase())
       );

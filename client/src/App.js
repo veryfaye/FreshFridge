@@ -90,7 +90,9 @@ function App() {
               {auth ? <Redirect to="/home" /> : <Login setAuth={setAuth} />}
             </Route>
             <Route path="/sign-up" component={Signup} />
-            <Route path="/home" component={Home} />
+            <Route path="/home">
+              {!auth ? <Redirect to="/sign-in" /> : <Home setAuth={setAuth} />}
+            </Route>
             <Route exact path="/resetpass" component={VerifyEmail} />
             <Route exact path="/resetpass/:token">
               <ResetPass />
