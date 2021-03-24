@@ -22,30 +22,32 @@ export default function List() {
     loadData();
   }, []);
 
-  useEffect(() => {
-    console.log("growingFoodList");
-    console.log(growingFoodList);
-    console.log("suggestionsListComponent");
-    console.lot(suggestionsListComponent)
-  }, [growingFoodList], suggestionsListComponent);
+  useEffect(
+    () => {},
+    [growingFoodList],
+    suggestionsListComponent
+  );
 
   const renderFood = () => {
     let FoodResult = null;
 
-    //find a mach in the data
-    if (growingFoodList.length > 0) {
-      FoodResult = growingFoodList.map((food) => {
-        return (
-          <Item
-            key={food._id}
-            message={food.product}
-            deleteItem={() => handleDeleteItem(food._id)}
-            moveItem={() =>
-              handleMoveItem(food._id, food.product, food.shelfLife)
-            }
-          />
-        );
-      });
+    //find a match in the data
+    if (growingFoodList) {
+      console.log(growingFoodList)
+      //if (growingFoodList.length > 0) {
+        FoodResult = growingFoodList.map((food) => {
+          return (
+            <Item
+              key={food._id}
+              message={food.product}
+              deleteItem={() => handleDeleteItem(food._id)}
+              moveItem={() =>
+                handleMoveItem(food._id, food.product, food.shelfLife)
+              }
+            />
+          );
+        });
+      //}
     }
     return FoodResult;
   };
@@ -99,8 +101,10 @@ export default function List() {
 
   const handleInputChange = (e) => {
     let userFoodInput = e.target.value;
+    console.log(userFoodInput);
 
     if (userFoodInput.length > 2) {
+      console.log(grocItem);
       let possibleFoods = grocItem.filter((foodItem) =>
         foodItem.product.toLowerCase().includes(userFoodInput.toLowerCase())
       );

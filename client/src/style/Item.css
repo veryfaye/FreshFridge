@@ -14,11 +14,13 @@
   opacity: 50%;
   text-align: center;
   padding-top: 13px;
+  padding-left: 5px;
 }
 .fridgeButton {
   width: 35px;
   color: green;
   float: right;
+  padding-right:5px;
 }
 
 .foodName {
