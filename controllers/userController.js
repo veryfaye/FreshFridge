@@ -147,7 +147,7 @@ module.exports = {
             subject: "Reset Your Fresh Fridge Password",
             text:
               "Click here to reset your fresh fridge password\n\n" +
-              `http://localhost:3000/resetpass/${token}`,
+              `https://fresh-fridge-project3.herokuapp.com/resetpass/${token}`,
           };
 
           //step 3
