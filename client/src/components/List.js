@@ -22,7 +22,12 @@ export default function List() {
     loadData();
   }, []);
 
-  useEffect(() => {}, [growingFoodList], suggestionsListComponent);
+  useEffect(() => {
+    console.log("growingFoodList");
+    console.log(growingFoodList);
+    console.log("suggestionsListComponent");
+    console.lot(suggestionsListComponent)
+  }, [growingFoodList], suggestionsListComponent);
 
   const renderFood = () => {
     let FoodResult = null;
